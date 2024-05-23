@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
+import PropTypes from 'prop-types';
 
 const Search = ({ className, onSearchKeyword }) => {
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -33,5 +34,8 @@ const Search = ({ className, onSearchKeyword }) => {
     </form>
   );
 };
-
+Search.propTypes = {
+  className: PropTypes.string,
+  onSearchKeyword: PropTypes.func.isRequired,
+};
 export default Search;

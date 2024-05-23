@@ -21,7 +21,7 @@ const Categories = () => {
           title,
         });
       },
-      onSuccess: (data) => {
+      onSuccess: () => {
         queryClient.invalidateQueries(["categories"]);
         toast.success("Category is created");
       },
@@ -101,8 +101,8 @@ const Categories = () => {
           headers={categoriesData?.headers}
           userState={userState}
         >
-          {categoriesData?.data.map((category) => (
-            <tr>
+          {categoriesData?.data.map((category,index) => (
+            <tr key={index}>
               <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                 <div className="flex items-center">
                   <p className="text-gray-900 whitespace-no-wrap">

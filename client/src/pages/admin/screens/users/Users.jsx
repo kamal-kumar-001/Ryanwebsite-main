@@ -1,4 +1,3 @@
-import React from "react";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { useDataTable } from "../../../../hooks/useDataTable";
@@ -46,7 +45,7 @@ const Users = () => {
           userId,
         });
       },
-      onSuccess: (data) => {
+      onSuccess: () => {
         queryClient.invalidateQueries(["users"]);
         toast.success("User is updated");
       },

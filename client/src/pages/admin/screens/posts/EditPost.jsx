@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React, { useState } from "react";
+import { useState } from "react";
 import CreatableSelect from "react-select/creatable";
 import { getSinglePost, updatePost } from "../../../../services/index/posts";
 import { Link, useParams, useNavigate } from "react-router-dom";
@@ -98,7 +98,6 @@ const EditPost = () => {
       "document",
       JSON.stringify({ body, categories, title, tags, slug: postSlug, caption })
     );
-
     mutateUpdatePostDetail({
       updatedData,
       slug,
@@ -157,8 +156,9 @@ const EditPost = () => {
               Delete Image
             </button>
             <div className="mt-4 flex gap-2">
-              {data?.categories.map((category) => (
-                <Link
+              {data?.categories.map((category,index) => (
+                <Link 
+                key={index}
                   to={`/blog?category=${category.name}`}
                   className="text-primary text-sm font-roboto inline-block md:text-base"
                 >

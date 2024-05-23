@@ -1,7 +1,7 @@
 import { images, stables } from "../../../../constants";
 import { deleteProduct, getAllProducts } from "../../../../services/index/products";
-import Pagination from "../../../../components/Pagination";
-import { toast } from "react-hot-toast";
+// import Pagination from "../../../../components/Pagination";
+// import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { useDataTable } from "../../../../hooks/useDataTable";
 import DataTable from "../../components/DataTable";
@@ -15,7 +15,7 @@ const ManageProducts = () => {
     isLoading,
     isFetching,
     isLoadingDeleteData,
-    queryClient,
+    // queryClient,
     searchKeywordHandler,
     submitSearchKeywordHandler,
     deleteDataHandler,
@@ -31,7 +31,7 @@ const ManageProducts = () => {
       });
     },
   });
-
+// console.log(productsData?.data?.products[1]);
   return (
     <DataTable
       pageTitle="Manage Products"
@@ -40,17 +40,17 @@ const ManageProducts = () => {
       searchKeywordOnSubmitHandler={submitSearchKeywordHandler}
       searchKeywordOnChangeHandler={searchKeywordHandler}
       searchKeyword={searchKeyword}
-      tableHeaderTitleList={["Title", "Category", "Created At", "Tags", ""]}
+      tableHeaderTitleList={["Name", "Category", "Price", "Stock", "Created At","Action"]}
       isLoading={isLoading}
       isFetching={isFetching}
-      data={productsData?.data}
+      data={productsData?.data?.products}
       setCurrentPage={setCurrentPage}
       currentPage={currentPage}
-      headers={productsData?.headers}
+      headers={productsData?.data?.headers}
       userState={userState}
     >
-      {productsData?.data.map((product) => (
-        <tr>
+      {productsData?.data?.products?.map((product,index) => (
+        <tr key={index}>
           <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
             <div className="flex items-center">
               <div className="flex-shrink-0">
@@ -59,7 +59,7 @@ const ManageProducts = () => {
                     src={
                       product?.photo
                         ? stables.UPLOAD_FOLDER_BASE_URL + product?.photo
-                        : images.sampleProductImage
+                        : images.samplePostImage
                     }
                     alt={product.title}
                     className="mx-auto object-cover rounded-lg w-10 aspect-square"
@@ -73,7 +73,7 @@ const ManageProducts = () => {
           </td>
           <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
             <p className="text-gray-900 whitespace-no-wrap">
-              {product.categories.length > 0
+              {product.categories?.length > 0
                 ? product.categories
                     .slice(0, 3)
                     .map(
@@ -89,6 +89,16 @@ const ManageProducts = () => {
           </td>
           <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
             <p className="text-gray-900 whitespace-no-wrap">
+              {product.price}
+            </p>
+          </td>
+          <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
+            <p className="text-gray-900 whitespace-no-wrap">
+              {product.countInStock}
+            </p>
+          </td>
+          <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
+            <p className="text-gray-900 whitespace-no-wrap">
               {new Date(product.createdAt).toLocaleDateString("en-US", {
                 day: "numeric",
                 month: "short",
@@ -96,18 +106,18 @@ const ManageProducts = () => {
               })}
             </p>
           </td>
-          <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
+          {/* <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
             <div className="flex gap-x-2">
-              {product.tags.length > 0
+              {product?.tags?.length > 0
                 ? product.tags.map((tag, index) => (
-                    <p>
+                    <p key={index}>
                       {tag}
                       {product.tags.length - 1 !== index && ","}
                     </p>
                   ))
                 : "No tags"}
             </div>
-          </td>
+          </td> */}
           <td className="px-5 py-5 text-sm bg-white border-b border-gray-200 space-x-5">
             <button
               disabled={isLoadingDeleteData}

@@ -29,7 +29,7 @@ const BlogPage = () => {
     },
   });
 
-  console.log(data);
+  // console.log(data);
 
   useEffect(() => {
     window.scrollTo(0, 0);

@@ -24,7 +24,7 @@ const Header = () => {
 
   const { mutate: mutateCreatePost, isLoading: isLoadingCreatePost } =
     useMutation({
-      mutationFn: ({ slug, token }) => {
+      mutationFn: ({ token }) => {
         return createPost({
           token,
         });
@@ -41,7 +41,7 @@ const Header = () => {
     });
   const { mutate: mutateCreateProduct, isLoading: isLoadingCreateProduct } =
     useMutation({
-      mutationFn: ({ slug, token }) => {
+      mutationFn: ({  token }) => {
         return createProduct({
           token,
         });

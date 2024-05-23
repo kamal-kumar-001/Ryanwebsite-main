@@ -1,7 +1,6 @@
-import React from "react";
-import { BsCheckLg } from "react-icons/bs";
-import { AiOutlineClose } from "react-icons/ai";
-
+// import { BsCheckLg } from "react-icons/bs";
+// import { AiOutlineClose } from "react-icons/ai";
+import PropTypes from 'prop-types';
 import { images, stables } from "../constants";
 import { Link } from "react-router-dom";
 
@@ -91,5 +90,13 @@ const ArticleCard = ({ post, className }) => {
     </div>
   );
 };
-
+ArticleCard.propTypes = {
+  post: PropTypes.shape({
+    slug: PropTypes.string.isRequired,
+    photo: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    caption: PropTypes.string.isRequired,
+  }).isRequired,
+  className: PropTypes.string,
+};
 export default ArticleCard;

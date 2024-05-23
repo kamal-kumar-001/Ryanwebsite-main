@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from 'prop-types';
 import { usePagination, DOTS } from "../hooks/usePagination";
 
 const Pagination = ({
@@ -46,10 +46,10 @@ const Pagination = ({
             <path d="M1427 301l-531 531 531 531q19 19 19 45t-19 45l-166 166q-19 19-45 19t-45-19l-742-742q-19-19-19-45t19-45l742-742q19-19 45-19t45 19l166 166q19 19 19 45t-19 45z"></path>
           </svg>
         </button>
-        {paginationRange.map((pageNumber) => {
+        {paginationRange.map((pageNumber,index) => {
           if (pageNumber === DOTS) {
             return (
-              <button className="cursor-default w-full px-4 py-2 text-base bg-white border">
+              <button key={index} className="cursor-default w-full px-4 py-2 text-base bg-white border">
                 &#8230;
               </button>
             );
@@ -92,5 +92,10 @@ const Pagination = ({
     </div>
   );
 };
-
+Pagination.propTypes = {
+  onPageChange: PropTypes.func.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  siblingCount: PropTypes.number.isRequired,
+  totalPageCount: PropTypes.number.isRequired,
+};
 export default Pagination;

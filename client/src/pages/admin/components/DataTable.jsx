@@ -1,4 +1,5 @@
 import Pagination from "../../../components/Pagination";
+import PropTypes from 'prop-types';
 
 const DataTable = ({
   pageTitle,
@@ -86,7 +87,8 @@ const DataTable = ({
                 <Pagination
                   onPageChange={(page) => setCurrentPage(page)}
                   currentPage={currentPage}
-                  totalPageCount={JSON.parse(headers?.["x-totalpagecount"])}
+                  // totalPageCount={JSON?.parse(headers?.["x-totalpagecount"])}
+                  totalPageCount={typeof headers?.["x-totalpagecount"] === "string" ? JSON.parse(headers?.["x-totalpagecount"]) : ''}
                 />
               )}
             </div>
@@ -96,5 +98,20 @@ const DataTable = ({
     </div>
   );
 };
-
+DataTable.propTypes = {
+  pageTitle: PropTypes.string,
+  dataListName: PropTypes.string,
+  searchKeywordOnSubmitHandler: PropTypes.func,
+  searchInputPlaceHolder: PropTypes.string,
+  searchKeywordOnChangeHandler: PropTypes.func,
+  searchKeyword: PropTypes.string,
+  tableHeaderTitleList: PropTypes.arrayOf(PropTypes.string),
+  isLoading: PropTypes.bool,
+  isFetching: PropTypes.bool,
+  data: PropTypes.array,
+  children: PropTypes.node,
+  setCurrentPage: PropTypes.func,
+  currentPage: PropTypes.number,
+  headers: PropTypes.object,
+};
 export default DataTable;

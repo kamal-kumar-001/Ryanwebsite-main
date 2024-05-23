@@ -1,4 +1,4 @@
-import React from "react";
+
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { useDataTable } from "../../../../hooks/useDataTable";
@@ -40,7 +40,7 @@ const Comments = () => {
 
   const {
     mutate: mutateUpdateCommentCheck,
-    isLoading: isLoadingUpdateCommentCheck,
+    // isLoading: isLoadingUpdateCommentCheck,
   } = useMutation({
     mutationFn: ({ token, check, commentId }) => {
       return updateComment({ token, check, commentId });
@@ -79,8 +79,8 @@ const Comments = () => {
       currentPage={currentPage}
       headers={commentsData?.headers}
     >
-      {commentsData?.data.map((comment) => (
-        <tr>
+      {commentsData?.data.map((comment, index) => (
+        <tr key={index}>
           <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
             <div className="flex items-center">
               <div className="flex-shrink-0">

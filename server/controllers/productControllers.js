@@ -1,9 +1,8 @@
 const asyncHandler = require("express-async-handler");
 const Product = require("../models/Product");
+const { uploadPicture } = require("../middleware/uploadPictureMiddleware");
+const { fileRemover } = require("../utils/fileRemover");
 
-// @desc    Fetch all products
-// @route   GET /api/products
-// @access  Public
 const getAllProducts = asyncHandler(async (req, res) => {
   const pageSize = 10;
   const page = Number(req.query.pageNumber) || 1;
@@ -25,9 +24,6 @@ const getAllProducts = asyncHandler(async (req, res) => {
   res.json({ products, page, pages: Math.ceil(count / pageSize) });
 });
 
-// @desc    Fetch single product
-// @route   GET /api/products/:id
-// @access  Public
 const getProduct = asyncHandler(async (req, res) => {
   const product = await Product.findOne({ slug: req.params.slug });
   if (product) {
@@ -38,9 +34,6 @@ const getProduct = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Delete a product
-// @route   DELETE /api/products/:id
-// @access  Private/Admin
 const deleteProduct = asyncHandler(async (req, res) => {
   const product = await Product.findOne({ slug: req.params.slug });
   if (product) {
@@ -52,9 +45,6 @@ const deleteProduct = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Create a product
-// @route   POST /api/products
-// @access  Private/Admin
 const createProduct = asyncHandler(async (req, res) => {
   const generateSlug = (title) => {
     const timestamp = Date.now();
@@ -70,46 +60,94 @@ const createProduct = asyncHandler(async (req, res) => {
     price: 0,
     user: req.user._id,
     image: "/images/sample.jpg",
-    brand: "Sample brand",
+    // brand: "Sample brand",
     category: "Sample category",
     countInStock: 0,
-    numReviews: 0,
     description: "Sample description",
+    rating: 0,
+    reviews: [],
+    numReviews: 0,
   });
 
   const createdProduct = await product.save();
   res.status(201).json(createdProduct);
 });
 
-// @desc    Update a product
-// @route   PUT /api/products/:id
-// @access  Private/Admin
-const updateProduct = asyncHandler(async (req, res) => {
-  const { name, price, description, image, brand, category, countInStock } =
-    req.body;
 
-  const product = await Product.findOne({ slug: req.params.slug });
+const updateProduct = async (req, res, next) => {
+  try {
+    const product = await Product.findOne({ slug: req.params.slug });
 
-  if (product) {
-    product.name = name || product.name;
-    product.price = price || product.price;
-    product.description = description || product.description;
-    product.image = image || product.image;
-    product.brand = brand || product.brand;
-    product.category = category || product.category;
-    product.countInStock = countInStock || product.countInStock;
+    if (!product) {
+      const error = new Error("Product was not found");
+      next(error);
+      return;
+    }
 
-    const updatedProduct = await product.save();
-    res.json(updatedProduct);
-  } else {
-    res.status(404);
-    throw new Error("Product not found");
+    const upload = uploadPicture.single("productPicture");
+
+    const handleUpdateProductData = async (data) => {
+      const {
+        name,
+        slug,
+        price,
+        user,
+        image,
+        category,
+        countInStock,
+        description,
+        rating,
+        reviews,
+        numReviews,
+      } = JSON.parse(data);
+
+      product.name = name || product.name;
+      product.slug = slug || product.slug;
+      product.price = price || product.price;
+      product.user = user || product.user;
+      product.image = image || product.image;
+      product.category = category || product.category;
+      product.countInStock = countInStock || product.countInStock;
+      product.description = description || product.description;
+      product.rating = rating || product.rating;
+      product.reviews = reviews || product.reviews;
+      product.numReviews = numReviews || product.numReviews;
+
+      const updatedProduct = await product.save();
+      return res.json(updatedProduct);
+    };
+
+    upload(req, res, async function (err) {
+      if (err) {
+        const error = new Error(
+          "An unknown error occurred when uploading: " + err.message
+        );
+        next(error);
+      } else {
+        // everything went well
+        if (req.file) {
+          let filename = product.image;
+          if (filename) {
+            fileRemover(filename);
+          }
+          product.image = req.file.filename;
+          handleUpdateProductData(req.body.document);
+        } else {
+          // let filename = product.image;
+          // product.image = "";
+          // if (filename) {
+          //   fileRemover(filename);
+          // }
+          handleUpdateProductData(req.body.document);
+        }
+      }
+    });
+  } catch (error) {
+    next(error);
   }
-});
+};
 
-// @desc    Create a new review
-// @route   POST /api/products/:id/reviews
-// @access  Private
+
 const createProductReview = asyncHandler(async (req, res) => {
   const { rating, comment } = req.body;
 

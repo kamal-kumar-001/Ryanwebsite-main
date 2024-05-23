@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import  { useState } from "react";
+import PropTypes from 'prop-types';
 import { createPortal } from "react-dom";
 import { HiOutlineCamera } from "react-icons/hi";
 
@@ -17,7 +18,7 @@ const ProfilePicture = ({ avatar }) => {
   const [openCrop, setOpenCrop] = useState(false);
   const [photo, setPhoto] = useState(null);
 
-  const { mutate, isLoading } = useMutation({
+  const { mutate } = useMutation({
     mutationFn: ({ token, formData }) => {
       return updateProfilePicture({
         token: token,
@@ -101,5 +102,7 @@ const ProfilePicture = ({ avatar }) => {
     </>
   );
 };
-
+ProfilePicture.propTypes = {
+  avatar: PropTypes.string.isRequired,
+};
 export default ProfilePicture;

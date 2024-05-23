@@ -1,5 +1,5 @@
 import AsyncSelect from "react-select/async";
-
+import PropTypes from 'prop-types';
 const MultiSelectTagDropdown = ({
   defaultValue = [],
   loadOptions,
@@ -17,4 +17,9 @@ const MultiSelectTagDropdown = ({
   );
 };
 
+MultiSelectTagDropdown.propTypes = {
+  defaultValue: PropTypes.array,
+  loadOptions: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 export default MultiSelectTagDropdown;

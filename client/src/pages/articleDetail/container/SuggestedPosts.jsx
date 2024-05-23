@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import { images, stables } from "../../../constants";
 
@@ -63,5 +63,15 @@ const SuggestedPosts = ({ className, header, posts = [], tags }) => {
     </div>
   );
 };
-
+SuggestedPosts.propTypes = {
+  className: PropTypes.string,
+  header: PropTypes.string.isRequired,
+  posts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string),
+};
 export default SuggestedPosts;

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
+import { useEffect, useState } from "react";
+// import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 const NavItemCollapse = ({
   title,
   children,
@@ -45,5 +45,12 @@ const NavItemCollapse = ({
     </div>
   );
 };
-
+NavItemCollapse.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  icon: PropTypes.node,
+  name: PropTypes.string.isRequired,
+  activeNavName: PropTypes.string.isRequired,
+  setActiveNavName: PropTypes.func.isRequired,
+};
 export default NavItemCollapse;

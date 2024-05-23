@@ -1,7 +1,7 @@
 import { images, stables } from "../../../../constants";
 import { deletePost, getAllPosts } from "../../../../services/index/posts";
-import Pagination from "../../../../components/Pagination";
-import { toast } from "react-hot-toast";
+// import Pagination from "../../../../components/Pagination";
+// import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { useDataTable } from "../../../../hooks/useDataTable";
 import DataTable from "../../components/DataTable";
@@ -15,7 +15,7 @@ const ManagePosts = () => {
     isLoading,
     isFetching,
     isLoadingDeleteData,
-    queryClient,
+    // queryClient,
     searchKeywordHandler,
     submitSearchKeywordHandler,
     deleteDataHandler,
@@ -31,7 +31,6 @@ const ManagePosts = () => {
       });
     },
   });
-
   return (
     <DataTable
       pageTitle="Manage Posts"
@@ -49,8 +48,8 @@ const ManagePosts = () => {
       headers={postsData?.headers}
       userState={userState}
     >
-      {postsData?.data.map((post) => (
-        <tr>
+      {postsData?.data.map((post,index) => (
+        <tr key={index}>
           <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
             <div className="flex items-center">
               <div className="flex-shrink-0">
@@ -80,7 +79,7 @@ const ManagePosts = () => {
                       (category, index) =>
                         `${category.title}${
                           post.categories.slice(0, 3).length === index + 1
-                            ? ""
+                            ? <div key={index}></div>
                             : ", "
                         }`
                     )
@@ -100,7 +99,7 @@ const ManagePosts = () => {
             <div className="flex gap-x-2">
               {post.tags.length > 0
                 ? post.tags.map((tag, index) => (
-                    <p>
+                    <p key={index}>
                       {tag}
                       {post.tags.length - 1 !== index && ","}
                     </p>
