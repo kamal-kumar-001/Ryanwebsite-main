@@ -12,6 +12,7 @@ import Alert from "../../components/Alert";
 import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import MainLayout from "../../components/MainLayout";
+// import { userActions } from "../../store/reducers/userReducers";
 
 const SingleProductScreen = () => {
   const { id: productId } = useParams();
@@ -22,17 +23,17 @@ const SingleProductScreen = () => {
   const dispatch = useDispatch();
 
   const productDetails = useSelector((state) => state.productDetails);
-  const { loading, error, product } = productDetails;
-
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const { loading, error, product } = productDetails || {};
+  const userState = useSelector((state) => state.user);
+  // const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userState.userInfo;
 
   const productCreateReview = useSelector((state) => state.productCreateReview);
   const {
     loading: loadingProductReview,
     error: errorProductReview,
     success: successProductReview,
-  } = productCreateReview;
+  } = productCreateReview || {};
 
   useEffect(() => {
     if (successProductReview) {

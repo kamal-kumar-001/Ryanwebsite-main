@@ -28,6 +28,8 @@ import OrderScreen from "./pages/order/OrderScreen";
 import SingleProductScreen from "./pages/single-product/SingleProductScreen";
 import CartScreen from "./pages/cart/CartScreen";
 import ProductScreen from "./pages/product/ProductScreen";
+import ManagePodcasts from "./pages/admin/screens/podcasts/ManagePodcast";
+import EditPodcast from "./pages/admin/screens/podcasts/EditPodcast";
 
 function App() {
   return (
@@ -54,9 +56,11 @@ function App() {
           <Route index element={<Admin />} />
           <Route path="comments" element={<Comments />} />
           <Route path="posts/manage" element={<ManagePosts />} />
+          <Route path="podcasts/manage" element={<ManagePodcasts />} />
           <Route path="products/manage" element={<ManageProducts />} />
           <Route path="orders/manage" element={<ManageOrders />} />
           <Route path="posts/manage/edit/:slug" element={<EditPost />} />
+          <Route path="podcasts/manage/edit/:slug" element={<EditPodcast />} />
           <Route path="products/manage/edit/:slug" element={<EditProduct />} />
           <Route path="categories/manage" element={<Categories />} />
 

@@ -190,7 +190,7 @@ MenuBar.propTypes = {
     chain: PropTypes.func.isRequired,
     isActive: PropTypes.func.isRequired,
     can: PropTypes.func,
-  }).isRequired,
+  }),
 };
 
 export default MenuBar;

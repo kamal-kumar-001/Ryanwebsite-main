@@ -12,6 +12,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { createPost } from "../../../../services/index/posts";
+import { createPodcast } from "../../../../services/index/podcasts";
 import { createProduct } from "../../../../services/index/products";
 
 const Header = () => {
@@ -33,6 +34,24 @@ const Header = () => {
         queryClient.invalidateQueries(["posts"]);
         toast.success("Post is created, edit that now!");
         navigate(`/admin/posts/manage/edit/${data.slug}`);
+      },
+      onError: (error) => {
+        toast.error(error.message);
+        console.log(error);
+      },
+    });
+
+  const { mutate: mutateCreatePodcast, isLoading: isLoadingCreatePodcast } =
+    useMutation({
+      mutationFn: ({ token }) => {
+        return createPodcast({
+          token,
+        });
+      },
+      onSuccess: (data) => {
+        queryClient.invalidateQueries(["podcasts"]);
+        toast.success("Podcast is created, edit that now!");
+        navigate(`/admin/podcasts/manage/edit/${data.slug}`);
       },
       onError: (error) => {
         toast.error(error.message);
@@ -71,6 +90,9 @@ const Header = () => {
 
   const handleCreateNewPost = ({ token }) => {
     mutateCreatePost({ token });
+  };
+  const handleCreateNewPodcast = ({ token }) => {
+    mutateCreatePodcast({ token });
   };
   const handleCreateNewProduct = ({ token }) => {
     mutateCreateProduct({ token });
@@ -143,6 +165,26 @@ const Header = () => {
                   Add New Post
                 </button>
                 <Link to="/admin/categories/manage">Categories</Link>
+              </NavItemCollapse>
+              
+              <NavItemCollapse
+                title="Podcasts"
+                icon={<MdDashboard className="text-xl" />}
+                name="podcasts"
+                activeNavName={activeNavName}
+                setActiveNavName={setActiveNavName}
+              >
+                <Link to="/admin/podcasts/manage">Manage all podcasts</Link>
+                <button
+                  disabled={isLoadingCreatePodcast}
+                  className="text-start disabled:opacity-60 disabled:cursor-not-allowed"
+                  onClick={() =>
+                    handleCreateNewPodcast({ token: userState.userInfo.token })
+                  }
+                >
+                  Add New Podcast
+                </button>
+                {/* <Link to="/admin/categories/manage">Categories</Link> */}
               </NavItemCollapse>
 
               <NavItem
