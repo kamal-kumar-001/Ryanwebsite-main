@@ -7,14 +7,14 @@ import MainLayout from "../../components/MainLayout";
 import { images, stables } from "../../constants";
 import SuggestedPosts from "./container/SuggestedPosts";
 import { useQuery } from "@tanstack/react-query";
-import { getAllPosts, getSinglePost } from "../../services/index/posts";
+// import { getAllPosts, getSinglePost } from "../../services/index/posts";
 import ArticleDetailSkeleton from "./components/PodcastDetailSkeleton";
 import ErrorMessage from "../../components/ErrorMessage";
 // import { useSelector } from "react-redux";
 // import parseJsonToHtml from "../../utils/parseJsonToHtml";
 import Editor from "../../components/editor/Editor";
-import ShareModal from "../../components/ShareModal";
-import PrintButton from "../../components/PrintButton";
+// import ShareModal from "../../components/ShareModal";
+// import PrintButton from "../../components/PrintButton";
 import { getAllPodcasts, getSinglePodcast } from "../../services/index/podcasts";
 // import Rating from "../../components/Rating";
 

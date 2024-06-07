@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 const ArticleCardSkeleton = ({ className }) => {
   return (
     <div
@@ -28,5 +29,7 @@ const ArticleCardSkeleton = ({ className }) => {
     </div>
   );
 };
-
+ArticleCardSkeleton.propTypes = {
+  className: PropTypes.string,
+};
 export default ArticleCardSkeleton;

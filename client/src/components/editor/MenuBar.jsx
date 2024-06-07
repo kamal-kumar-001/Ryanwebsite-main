@@ -1,4 +1,5 @@
 import { useCallback } from 'react'
+import PropTypes from 'prop-types';
 import {
   AiOutlineBold,
   AiOutlineClose,
@@ -183,6 +184,13 @@ const MenuBar = ({ editor }) => {
       </button>
     </div>
   );
+};
+MenuBar.propTypes = {
+  editor: PropTypes.shape({
+    chain: PropTypes.func.isRequired,
+    isActive: PropTypes.func.isRequired,
+    can: PropTypes.func,
+  }),
 };
 
 export default MenuBar;

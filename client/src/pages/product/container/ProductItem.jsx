@@ -49,6 +49,7 @@ const ProductItem = (props) => {
 ProductItem.propTypes = {
   product: PropTypes.shape({
     _id: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,

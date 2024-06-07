@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 
 const BreadCrumbs = ({ data }) => {
@@ -13,5 +13,7 @@ const BreadCrumbs = ({ data }) => {
     </div>
   );
 };
-
+BreadCrumbs.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 export default BreadCrumbs;

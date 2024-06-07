@@ -24,7 +24,7 @@ export const useDataTable = ({
   const { mutate: mutateDeletePost, isLoading: isLoadingDeleteData } =
     useMutation({
       mutationFn: mutateDeleteFn,
-      onSuccess: (data) => {
+      onSuccess: () => {
         queryClient.invalidateQueries([dataQueryKey]);
         toast.success(deleteDataMessage);
       },
