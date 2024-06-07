@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import PropTypes from 'prop-types';
-import { screens } from "../../../constants";
+import { screens } from  "../../../constants";
 import QuantityInput from "../../../components/cart/QuantityInput";
 
 const ProductImages = styled.div`
@@ -107,7 +107,7 @@ const ProductDetail = ({ product }) => {
                 />
                 <button
                   onClick={addToCartHandler}
-                  className="py-3 px-6 bg-palette-chineseBlack text-white"
+                  className="py-3 px-6 bg-black text-white"
                 >
                   ADD TO CART
                 </button>

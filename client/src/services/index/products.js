@@ -5,8 +5,7 @@ export const getAllProducts = async (searchKeyword = "", page = 1, limit = 10) =
     const { data, headers } = await axios.get(
       `/api/products?searchKeyword=${searchKeyword}&page=${page}&limit=${limit}`
     );
-    // console.log(data);
-    return { data: data, headers };
+    return { data, headers };
   } catch (error) {
     if (error.response && error.response.data.message)
       throw new Error(error.response.data.message);
@@ -49,6 +48,7 @@ export const updateProduct = async ({ updatedData, slug, token }) => {
         Authorization: `Bearer ${token}`,
       },
     };
+
     const { data } = await axios.put(`/api/products/${slug}`, updatedData, config);
     return data;
   } catch (error) {

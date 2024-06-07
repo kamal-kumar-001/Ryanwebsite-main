@@ -1,6 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Cropper from "react-easy-crop";
-import PropTypes from 'prop-types';
 
 import getCroppedImg from "./cropImage";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -113,14 +112,4 @@ const CropEasy = ({ photo, setOpenCrop }) => {
   );
 };
 
-CropEasy.propTypes = {
-  photo: PropTypes.shape({
-    url: PropTypes.string.isRequired,
-    file: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
-  setOpenCrop: PropTypes.func.isRequired,
-};
 export default CropEasy;

@@ -18,14 +18,14 @@ const ProductItem = (props) => {
       onMouseEnter={() => setIsShown(true)}
       onMouseLeave={() => setIsShown(false)}
     >
-      <Link className="h-fit" to={`/product/${product._id}`}>
+      <Link className="h-fit" to={`/product/${product.slug}`}>
         <img
           className="object-cover object-center w-full h-auto"
           src={product.image}
           alt={product.name}
         />
       </Link>
-      <Link className="h-fit" to={`/product/${product._id}`}>
+      <Link className="h-fit" to={`/product/${product.slug}`}>
         <h5 className="text-palette-graniteGray font-normal mt-2">
           {product.name}
         </h5>

@@ -9,6 +9,7 @@ import MainLayout from "../../components/MainLayout";
 import Pagination from "../../components/Pagination";
 import { useSearchParams } from "react-router-dom";
 import Search from "../../components/Search";
+import './blogpage.css'
 
 let isFirstRun = true;
 
@@ -29,7 +30,7 @@ const BlogPage = () => {
     },
   });
 
-  // console.log(data);
+  console.log(data);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -51,11 +52,28 @@ const BlogPage = () => {
 
   return (
     <MainLayout>
-      <section className="flex flex-col container mx-auto px-5 py-10 my-20">
-        <Search
+      <div className="blog-header">
+      <section className="blog-hero">
+          <div className="blog-left">
+            <h1>
+              The center <br />
+              for Health <br />
+              <span>Blogs</span>
+            </h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, aliquid.</p>
+            <Search
           className="w-full max-w-xl mb-10"
           onSearchKeyword={handleSearch}
         />
+          </div>
+          <div className="blog-right">
+            <img src="https://source.unsplash.com/bowl-of-vegetable-salad-with-walnuts-MlPD-AzZYMg" alt=""/>
+          </div>
+        </section>
+      </div>
+        
+      { <section className="flex flex-col container mx-auto px-5 ">
+        
         <div className=" flex flex-wrap md:gap-x-5 gap-y-5 pb-10">
           {isLoading || isFetching ? (
             [...Array(3)].map((item, index) => (
@@ -85,7 +103,7 @@ const BlogPage = () => {
             totalPageCount={JSON.parse(data?.headers?.["x-totalpagecount"])}
           />
         )}
-      </section>
+      </section> }
     </MainLayout>
   );
 };

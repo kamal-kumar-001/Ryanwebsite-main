@@ -8,10 +8,9 @@
 
 }
 :root {
-  --main-color: #f47d2b;
+  --main-color: #e1301c;
+
 }
-
-
 a {
   text-decoration: none;
 }
@@ -69,15 +68,27 @@ li {
   color:var(--main-color) ;
 
 }
+.only-to-hover li a:hover {
+  color: var(--main-color) !important;
+  text-decoration: none !important;
+
+}
 
 .dropdown {
   position: relative;
+  display: flex;
+ 
+}
+.dropdown span{
+  /* border: 1px solid red;s */
+  padding-top: 6px;
 }
 
 .dropdown-content {
   position: absolute;
   width: max-content;
-  margin-top: 10px;
+  margin-top: 40px;
+
   background-color: rgb(249, 246, 246);
   box-shadow: 2px 2px 4px rgba(248, 236, 232, 0.4);
   border-bottom-left-radius: 10px;
@@ -87,22 +98,29 @@ li {
   visibility: hidden; /* Initially hidden */
   opacity: 0; /* Start with opacity 0 */
   transition: opacity 0.9s ease, visibility 0.3s ease; /* Add transition effect */
+  /* border: 1px solid red; */
+
 }
 
-.dropdown-content li {
+.dropdown-content a {
+  display: block;
   padding: 13px;
   color: black;
 }
+
 
 .dropdown:hover .dropdown-content,
 .dropdown-content:hover {
   visibility: visible; /* Change visibility to visible when hovered */
   opacity: 1; /* Change opacity to 1 when hovered */
 }
+.dropdown-content a:hover {
+  color: var(--main-color); /* Change color on hover */
+}
 
 
 
-.dropdown-content li{
+.dropdown-content a{
   padding: 13px;
   color: black;
 }
@@ -119,7 +137,7 @@ li {
 .social-media ul {
   height: 6rem;
   display: grid;
-  grid-template-columns: 3fr repeat(3, 1fr);
+  grid-template-columns:  3fr repeat(4, 1fr); ;
   align-items: center;
   justify-content: flex-end;
 }
@@ -163,13 +181,17 @@ li {
 }
 
 .instagram {
-  color: #c32aa3;
+  color: rgb(178, 47, 156);
 }
+
 
 .youtube {
   color: #ff0000;
 }
+.linkedin{
+  color:#0a66c2;
 
+}
 /* hero section   */
 
 .hero-section {
@@ -222,15 +244,16 @@ li {
     height: 7rem;
   }
 
-  .mobile-menu-link {
+  /* .mobile-menu-link {
     grid-column: 3/5;
     position: relative;
     z-index: 99;
     width: auto;
 
-  }
+  } */
 
   .mobile-menu-link {
+    margin-top: 30px;
     background-color: white;
     position: fixed;
     height: 20rem;
@@ -257,6 +280,10 @@ li {
     justify-content: space-around;
     flex-direction: column;
     align-items: start;
+  }
+  .mobile-menu-link ul li {
+/* border: 1px solid red; */
+padding-top: 10px;
   }
 
   .mobile-menu-link ul li:first-child {
@@ -289,6 +316,29 @@ li {
   }
 }
 
+.social-media-mobile ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0; /* Remove default margin */
+  flex-direction: row;
+}
+
+.social-media-mobile li {
+  margin-right: 10px;
+}
+
+.social-media-mobile li:last-child {
+  margin-right: 0;
+}
+
+.social-media-mobile a {
+  color: inherit;
+}
+
+.social-media-mobile a:hover {
+  color: var(--main-color);
+}
 @media (max-width: 798px) {
   .main-nav {
     height: 6rem;

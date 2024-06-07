@@ -40,8 +40,8 @@ const Header = () => {
         console.log(error);
       },
     });
-
-  const { mutate: mutateCreatePodcast, isLoading: isLoadingCreatePodcast } =
+    
+    const { mutate: mutateCreatePodcast, isLoading: isLoadingCreatePodcast } =
     useMutation({
       mutationFn: ({ token }) => {
         return createPodcast({
@@ -166,7 +166,6 @@ const Header = () => {
                 </button>
                 <Link to="/admin/categories/manage">Categories</Link>
               </NavItemCollapse>
-              
               <NavItemCollapse
                 title="Podcasts"
                 icon={<MdDashboard className="text-xl" />}

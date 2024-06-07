@@ -1,6 +1,7 @@
+// import React from "react";
 // import { BsCheckLg } from "react-icons/bs";
 // import { AiOutlineClose } from "react-icons/ai";
-import PropTypes from 'prop-types';
+
 import { images, stables } from "../constants";
 import { Link } from "react-router-dom";
 
@@ -9,7 +10,7 @@ const ArticleCard = ({ post, className }) => {
     <div
       className={`relative rounded-xl  shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] ${className} transition-transform duration-300 transform hover:scale-103`}
     >
-      <div className="absolute cursor-pointer text-gray-700 hover:text-white left-[-9px] top-7 z-10 bg-white px-2 py-1 border-2 hover:bg-purple-500  border-purple-500 transition-transform duration-300">
+      <div className="absolute cursor-pointer text-gray-700 hover:text-white left-[-9px] top-7 z-10 bg-white px-2 py-1 border-2 hover:bg-orange-500  border-orange-500 transition-transform duration-300">
         <div className="leading-[.75] px-2 ">
         <span className="text-base  font-semibold ">04</span><br/>
         <span className=" text-xs  font-semibold ">Apr</span>
@@ -36,7 +37,7 @@ const ArticleCard = ({ post, className }) => {
       </Link>
       <div className="p-5">
         <Link to={`/blog/${post.slug}`}>
-          <h2 className="font-roboto text-center font-bold text-xl text-dark-soft hover:text-purple-500 md:text-2xl lg:text-[28px]">
+          <h2 className="font-roboto text-center font-bold text-xl text-dark-soft hover:text-orange-500 md:text-2xl lg:text-[28px]">
             {post.title}
           </h2>
           <div className="h-[2px] mt-3 w-7 mx-auto  bg-slate-400" />
@@ -90,13 +91,5 @@ const ArticleCard = ({ post, className }) => {
     </div>
   );
 };
-ArticleCard.propTypes = {
-  post: PropTypes.shape({
-    slug: PropTypes.string.isRequired,
-    photo: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    caption: PropTypes.string.isRequired,
-  }).isRequired,
-  className: PropTypes.string,
-};
+
 export default ArticleCard;

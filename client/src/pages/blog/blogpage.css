@@ -1,0 +1,109 @@
+
+.blog-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    max-height: 600px;
+    margin-top: 5%;
+  }
+  
+  .blog-header .blog-hero { 
+    display: grid;
+    grid-template-columns: 4fr 1fr 4fr; 
+    grid-template-rows: 1fr 6fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    max-width: 1000px;
+    width: 90%;
+    margin: 0 auto;
+  }
+  
+  /* LEFT PART */
+  .blog-left { 
+    grid-area: 1 / 1 / 3 / 3;
+    border: 10px solid #c8343b;
+    padding: 30px;
+    background-color: #FFFFFF;
+    position: relative;
+  }
+  .blog-left h1{
+    text-transform: uppercase;
+    font-size: clamp(20px, 5vw ,40px);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .blog-left h1 span{
+    color: #c8343b;
+  }
+  .blog-left p{
+    margin-top: 25px;
+    margin-bottom: 50px;
+    font-size: 16px;
+  }
+  .blog-left a{
+    padding: 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid #c8343b;
+    color: #000;
+    font-weight: 700;
+  }
+  .blog-left a:hover{
+    color: #FFFFFF;
+    background-color: #eb464f;
+  }
+  
+  
+  /* RIGHT PART */
+  .blog-right { 
+    grid-area: 2 / 2 / 4 / 4;
+    border: 10px solid #c8343b;
+    z-index: -1;
+    position: relative;
+  }
+  
+  .blog-right img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* LEFT AND RIGHT BANDS */
+  .blog-left::before,
+  .blog-right::before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    height: 50%;
+    width: 50vw;
+    background: #c8343b;
+  }
+  .blog-left::before{
+    left: 0;
+    transform: translateY(-50%) translateX(-100%);
+  }
+  .blog-right::before{
+    right: 0;
+    transform: translateY(-50%) translateX(100%); 
+  }
+  
+
+  @media screen and (max-width: 450px){
+    .blog-header .blog-hero { 
+      grid-template-rows: 6fr 1fr 6fr;
+    }
+    .blog-left{
+      grid-area: 1 / 1 / 3 / 4;
+    }
+    .blog-right{
+      grid-area: 2 / 1 / 4 / 4
+    }
+  }
+
+  @media screen and (max-width:900px) {
+
+    .blog-header{
+      margin-top: 14%;
+    }
+  }

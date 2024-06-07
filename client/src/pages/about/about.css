@@ -3,6 +3,7 @@
 .body-class1{
     height: 100vh;
     position: relative;
+    margin-top: 8%;
 }
 
 .body-class1::after{
@@ -25,6 +26,7 @@
     margin: auto;
     justify-content: space-around;
     position: relative;
+  
 }
 
 .top-left-content{
@@ -32,6 +34,16 @@
     left: 10%;
     height: 90%;
     overflow: auto;
+
+    margin-top:20px;
+}
+
+.top-left-content div h2{
+  background-color: white;
+  width: 60%;
+}
+.top-left-content div p{
+  padding-top: 50px;
 }
 
 .top-left-content::-webkit-scrollbar{
@@ -41,20 +53,36 @@
 .bottom-right-content{
     width: 100%;
     margin-left: 20%;
-    margin-top: 40%;
+    margin-top: 30%;
     right: 0;
     overflow: hidden;
 }
+.bottom-right-content div p{
+padding-top: 50px;
+
+}
 .bottom-right-content:hover{
     cursor: pointer;
+}
+
+
+
+
+@media screen and (max-width:1200px){
+  .body-class1{
+
+    margin-top: 13%;
+}
 }
 
 @media screen and (max-width: 700px) {
 
     .body-class1{
         height:100%;
-        border: 1px solid green;
+        /* border: 1px solid green; */
+        margin-top: 25%;
     }
+
     .body-class1::after{
         opacity: 0.6;
         width: 100%;
@@ -92,5 +120,10 @@
       text-align: center; /* Center align heading */
 
     }
+    .top-left-content div h2 {
+      background-color: none;
+      width: 1%;
+  }
+
   }
   

@@ -1,18 +1,18 @@
-import  { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
-import { getAllPosts } from "../../services/index/posts";
 import ArticleCardSkeleton from "../../components/ArticleCardSkeleton";
 import ErrorMessage from "../../components/ErrorMessage";
-import ArticleCard from "../../components/ArticleCard";
+import PodcastCard from "../../components/PodcastCard";
 import MainLayout from "../../components/MainLayout";
 import Pagination from "../../components/Pagination";
+import './podcast.css'
+import { getAllPodcasts } from "../../services/index/podcasts";
 import { useSearchParams } from "react-router-dom";
-import Search from "../../components/Search";
+import  { useEffect } from "react";
 
 let isFirstRun = true;
 
-const BlogPage = () => {
+const PodcastPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const searchParamsValue = Object.fromEntries([...searchParams]);
@@ -21,15 +21,15 @@ const BlogPage = () => {
   const searchKeyword = searchParamsValue?.search || "";
 
   const { data, isLoading, isError, isFetching, refetch } = useQuery({
-    queryFn: () => getAllPosts(searchKeyword, currentPage, 12),
-    queryKey: ["posts"],
+    queryFn: () => getAllPodcasts(searchKeyword, currentPage, 12),
+    queryKey: ["podcasts"],
     onError: (error) => {
       toast.error(error.message);
       console.log(error);
     },
   });
 
-  // console.log(data);
+  console.log(data);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -45,17 +45,14 @@ const BlogPage = () => {
     setSearchParams({ page, search: searchKeyword });
   };
 
-  const handleSearch = ({ searchKeyword }) => {
-    setSearchParams({ page: 1, search: searchKeyword });
-  };
+  // const handleSearch = ({ searchKeyword }) => {
+  //   setSearchParams({ page: 1, search: searchKeyword });
+  // };
 
   return (
     <MainLayout>
-      <section className="flex flex-col container mx-auto px-5 py-10 my-20">
-        <Search
-          className="w-full max-w-xl mb-10"
-          onSearchKeyword={handleSearch}
-        />
+      { <section className="flex flex-col container mt-5 mx-auto px-5 ">
+        
         <div className=" flex flex-wrap md:gap-x-5 gap-y-5 pb-10">
           {isLoading || isFetching ? (
             [...Array(3)].map((item, index) => (
@@ -69,10 +66,10 @@ const BlogPage = () => {
           ) : data?.data.length === 0 ? (
             <p className="text-orange-500">No Posts Found!</p>
           ) : (
-            data?.data.map((post) => (
-              <ArticleCard
-                key={post._id}
-                post={post}
+            data?.data.map((podcast) => (
+              <PodcastCard
+                key={podcast._id}
+                post={podcast}
                 className="w-full md:w-[calc(50%-20px)] lg:w-[calc(33.33%-21px)]"
               />
             ))
@@ -85,9 +82,9 @@ const BlogPage = () => {
             totalPageCount={JSON.parse(data?.headers?.["x-totalpagecount"])}
           />
         )}
-      </section>
+      </section> }
     </MainLayout>
   );
 };
 
-export default BlogPage;
+export default PodcastPage;

@@ -49,7 +49,7 @@ const Alert = ({ variant, className = "", children }) => {
   );
 };
 Alert.propTypes = {
-  variant: PropTypes.string.isRequired,
+  variant: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
 };

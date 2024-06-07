@@ -1,55 +1,39 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import ProductDetail from "./container/ProductDetail";
-import {
-  listProductDetails,
-  createProductReview,
-} from "../../actions/productActions";
-// import BackButton from "../../components/BackButton";
-import { productCreateReviewActions } from "../../reducers/productReducers";
 import Alert from "../../components/Alert";
 import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import MainLayout from "../../components/MainLayout";
-// import { userActions } from "../../store/reducers/userReducers";
+import { getProduct } from "../../services/index/products";
 
 const SingleProductScreen = () => {
-  const { id: productId } = useParams();
+  const { id: slug } = useParams();
 
-  const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState("");
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const dispatch = useDispatch();
-
-  const productDetails = useSelector((state) => state.productDetails);
-  const { loading, error, product } = productDetails || {};
-  const userState = useSelector((state) => state.user);
-  // const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userState.userInfo;
-
-  const productCreateReview = useSelector((state) => state.productCreateReview);
-  const {
-    loading: loadingProductReview,
-    error: errorProductReview,
-    success: successProductReview,
-  } = productCreateReview || {};
+  const userLogin = useSelector((state) => state.userLogin) || {};
+  const { userInfo } = userLogin;
 
   useEffect(() => {
-    if (successProductReview) {
-      alert("Review submitted!");
-      setRating(0);
-      setComment("");
-      dispatch(productCreateReviewActions.productCreateReviewReset());
-    }
+    const fetchProduct = async () => {
+      try {
+        setLoading(true);
 
-    dispatch(listProductDetails(productId));
-  }, [productId, dispatch, successProductReview]);
+        const productData = await getProduct({slug});
+        setProduct(productData);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(createProductReview(productId, { rating, comment }));
-  };
+    fetchProduct();
+  }, [slug]);
 
   return (
     <MainLayout>
@@ -84,11 +68,11 @@ const SingleProductScreen = () => {
             <ProductDetail product={product} />
             <div className="mt-10">
               <h2 className="text-2xl font-semibold">Reviews</h2>
-              {product.reviews.length === 0 && (
+              {product?.reviews?.length === 0 && (
                 <Alert className="mt-5">No Reviews</Alert>
               )}
               <ul>
-                {product.reviews.map((review) => (
+                {product.reviews?.map((review) => (
                   <li key={review._id} className="flex flex-col mt-5">
                     <span className="font-semibold">{review.name}</span>
                     <Rating
@@ -109,42 +93,32 @@ const SingleProductScreen = () => {
                   <h2 className="text-2xl font-semibold mb-5">
                     Write a Customer Review
                   </h2>
-                  {errorProductReview && (
-                    <Alert variant="error" className="mb-5">
-                      {errorProductReview}
-                    </Alert>
-                  )}
                   {userInfo ? (
-                    <form onSubmit={submitHandler}>
+                    <form>
                       <div className="form-control">
                         <Rating
                           className="flex items-center text-palette-chineseBlack"
-                          initialRating={rating}
                           readonly={false}
                           fractions={2}
                           emptySymbol={<AiOutlineStar />}
                           fullSymbol={<AiFillStar />}
-                          onChange={(rateNumber) => setRating(rateNumber)}
                         />
                       </div>
                       <div className="form-control mt-3">
                         <textarea
                           className="textarea textarea-bordered"
                           placeholder="comment..."
-                          value={comment}
-                          onChange={(e) => setComment(e.target.value)}
                         />
                       </div>
                       <button
                         type="submit"
                         className="btn mt-3"
-                        disabled={loadingProductReview}
                       >
                         Submit
                       </button>
                     </form>
                   ) : (
-                    <Alert variant="warning" className="mt-5">
+                    <Alert variant={"warning"} className="mt-5">
                       Please{" "}
                       <Link to="/login" className="link">
                         sign in

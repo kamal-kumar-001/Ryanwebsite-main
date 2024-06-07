@@ -1,14 +1,15 @@
 import { useState } from "react";
 import "./about.css";
+import MainLayout from "../../components/MainLayout";
 
 function About() {
   const [topLeftContent, setTopLeftContent] = useState(
     <div>
-      <h2 style={{ fontSize: "30px", position: "absolute" }}>
-        Biologoy
-        <hr style={{ width: "50%" }} />
+      <h2 style={{ fontSize: "30px", position: "absolute",fontWeight:'bold'}}>
+        Bio<span style={{color:'#d42221'}}>graphy</span>
+
       </h2>
-      <p style={{ paddingTop: "50px", marginTop: "50px" }}>
+      <p >
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem ad odit
         illum consequuntur cum dolores enim, nam libero earum expedita aut
         molestias ullam corrupti nostrum natus quos repellat incidunt optio
@@ -47,9 +48,9 @@ function About() {
 
   const [bottomRightContent, setBottomRightContent] = useState(
     <div>
-      <h2 style={{ fontSize: "30px", position: "absolute" }}>
-        Phiolosphy
-        <hr style={{ width: "50%" }} />
+      <h2 style={{ fontSize: "30px", position: "absolute",fontWeight:'bold'}}>
+        Philo<span style={{color:'#d42221'}}>sophy</span>
+
       </h2>
       <p style={{ paddingTop: "50px" }}>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, sequi
@@ -106,6 +107,7 @@ function About() {
   };
 
   return (
+    <MainLayout>
     <div className="body-class1">
       <div>
         <h1
@@ -113,10 +115,11 @@ function About() {
             display: "flex",
             width: "100%",
             justifyContent: "center",
-            fontSize: "25px",
+            fontSize:'25px',
+         
           }}
         >
-          ABOUT RYAN FERNANDO
+          ABOUT&nbsp; <span style={{   fontWeight:'bold',color:'#d42221'}}>RYAN&nbsp;</span>  FERNANDO
         </h1>
         <hr style={{ width: "80%", margin: "auto" }} />
       </div>
@@ -128,6 +131,7 @@ function About() {
         </div>
       </div>
     </div>
+    </MainLayout>
   );
 }
 
