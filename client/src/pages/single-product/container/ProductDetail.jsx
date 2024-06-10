@@ -6,6 +6,7 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import PropTypes from 'prop-types';
 import { screens } from  "../../../constants";
 import QuantityInput from "../../../components/cart/QuantityInput";
+import { images, stables } from "../../../constants";
 
 const ProductImages = styled.div`
   ${screens.lg(css`
@@ -49,13 +50,13 @@ const ProductDetail = ({ product }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 grid-flow-dense min-h-0">
           <ProductImages
             className="flex overflow-auto lg:flex-col lg:col-span-2 lg:overflow-y-auto"
-            productImageHeight={productImageHeight}
+            productimageheight={productImageHeight}
           >
             {[...Array(5)].map((item, index) => (
               <img
                 key={index}
                 className="w-[22%] lg:w-full"
-                src="/images/sample.jpg"
+                src={product.photo ? stables.UPLOAD_FOLDER_BASE_URL + product.photo : images.samplePostImage}
                 alt="product"
               />
             ))}
@@ -64,7 +65,7 @@ const ProductDetail = ({ product }) => {
             <img
               ref={ProductImagesContainerRef}
               className="w-full object-cover"
-              src={product.image}
+              src={product.photo ? stables.UPLOAD_FOLDER_BASE_URL + product.photo : images.samplePostImage}
               alt="product_image"
             />
           </ProductSingleImage>
@@ -126,7 +127,7 @@ const ProductDetail = ({ product }) => {
 };
 ProductDetail.propTypes = {
   product: PropTypes.shape({
-    image: PropTypes.string,
+    photo: PropTypes.string,
     name: PropTypes.string,
     rating: PropTypes.number,
     numReviews: PropTypes.number,

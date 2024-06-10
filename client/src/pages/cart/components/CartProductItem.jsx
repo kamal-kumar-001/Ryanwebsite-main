@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToCart, removeFromCart } from "../../../actions/cartActions";
 import PropTypes from 'prop-types';
-
+import { images, stables } from "../../../constants";
 import QuantityInput from "../../../components/cart/QuantityInput";
 
 const CartProductItem = ({ item }) => {
@@ -32,7 +32,7 @@ const CartProductItem = ({ item }) => {
 
           <img
             className="w-20 aspect-square border border-gray-200"
-            src={item.image}
+            src={item.photo ? stables.UPLOAD_FOLDER_BASE_URL + item.photo : images.samplePostImage}
             alt="product"
           />
           <div className="space-y-2">
@@ -73,7 +73,7 @@ const CartProductItem = ({ item }) => {
 CartProductItem.propTypes = {
   item: PropTypes.shape({
     product: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    photo: PropTypes.string,
     name: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,

@@ -1,7 +1,7 @@
 import  { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
-
+import { images, stables } from "../../../constants";
 const ProductItem = (props) => {
   const navigate = useNavigate();
   const [isShown, setIsShown] = useState(false);
@@ -9,7 +9,7 @@ const ProductItem = (props) => {
   const product = props.product;
 
   const addToCartHandler = () => {
-    navigate(`/cart/${product._id}?qty=1`);
+    navigate(`/cart/${product.slug}?qty=1`);
   };
 
   return (
@@ -21,7 +21,7 @@ const ProductItem = (props) => {
       <Link className="h-fit" to={`/product/${product.slug}`}>
         <img
           className="object-cover object-center w-full h-auto"
-          src={product.image}
+          src={product.photo ? stables.UPLOAD_FOLDER_BASE_URL + product.photo : images.samplePostImage}
           alt={product.name}
         />
       </Link>
@@ -50,7 +50,7 @@ ProductItem.propTypes = {
   product: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    photo: PropTypes.string,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
   }).isRequired,
