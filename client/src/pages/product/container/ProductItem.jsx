@@ -1,7 +1,7 @@
 import  { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
-import { images, stables } from "../../../constants";
+
 const ProductItem = (props) => {
   const navigate = useNavigate();
   const [isShown, setIsShown] = useState(false);
@@ -21,7 +21,7 @@ const ProductItem = (props) => {
       <Link className="h-fit" to={`/product/${product.slug}`}>
         <img
           className="object-cover object-center w-full h-auto"
-          src={product.photo ? stables.UPLOAD_FOLDER_BASE_URL + product.photo : images.samplePostImage}
+          src={product.image}
           alt={product.name}
         />
       </Link>
@@ -50,7 +50,7 @@ ProductItem.propTypes = {
   product: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
-    photo: PropTypes.string,
+    image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
   }).isRequired,

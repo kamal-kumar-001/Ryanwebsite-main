@@ -20,6 +20,7 @@ const OrderScreen = () => {
   const [paymentLoading, setPaymentLoading] = useState(false);
 
   const orderDetails = useSelector((state) => state.orderDetails);
+  console.log(orderDetails);
   const { order, loading, error } = orderDetails;
 
   const orderPay = useSelector((state) => state.orderPay);
@@ -29,8 +30,9 @@ const OrderScreen = () => {
   const orderDeliver = useSelector((state) => state.orderDeliver);
   const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
 
-  const userLogin = useSelector((state) => state.userLogin);
+  const userLogin = useSelector((state) => state.user);
   const { userInfo } = userLogin;
+  console.log(userInfo);
 
   useEffect(() => {
     if (!userInfo) {
@@ -203,25 +205,25 @@ const OrderScreen = () => {
                 <div className="flex justify-between item-center">
                   <span className="text-gray-500">Items</span>
                   <span className="text-lime-700 font-bold">
-                    ${addDecimals(order.itemsPrice)}
+                    Rs. {addDecimals(order.itemsPrice)}
                   </span>
                 </div>
                 <div className="flex justify-between item-center">
                   <span className="text-gray-500">Shipping</span>
                   <span className="text-lime-700 font-bold">
-                    ${addDecimals(order.shippingPrice)}
+                    Rs. {addDecimals(order.shippingPrice)}
                   </span>
                 </div>
                 <div className="flex justify-between item-center">
                   <span className="text-gray-500">Tax</span>
                   <span className="text-lime-700 font-bold">
-                    ${addDecimals(order.taxPrice)}
+                    Rs. {addDecimals(order.taxPrice)}
                   </span>
                 </div>
                 <div className="flex justify-between item-center">
                   <span className="text-gray-500">Total</span>
                   <span className="text-lime-700 font-bold">
-                    ${addDecimals(order.totalPrice)}
+                    Rs. {addDecimals(order.totalPrice)}
                   </span>
                 </div>
               </div>

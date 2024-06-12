@@ -74,3 +74,4 @@ export const createProduct = async ({ token }) => {
     throw new Error(error.message);
   }
 };
+

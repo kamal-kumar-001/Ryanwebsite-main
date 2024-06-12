@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { images, stables } from "../../../constants";
 import PropTypes from 'prop-types';
-const SuggestedPosts = ({ className, header, posts = [], tags }) => {
+const SuggestedPosts = ({ className, header, posts = [] }) => {
   return (
     <div
-      className={`w-full shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] rounded-lg p-4 ${className}`}
+      className={`w-full  p-4 ${className}`}
     >
       <h2 className="font-roboto font-medium text-dark-hard md:text-xl">
         {header}
@@ -16,7 +16,7 @@ const SuggestedPosts = ({ className, header, posts = [], tags }) => {
             className="flex space-x-3 flex-nowrap items-center"
           >
             <img
-              className="aspect-square object-cover rounded-lg w-1/5"
+              className="aspect-square object-cover  w-1/5"
               src={
                 item?.photo
                   ? stables.UPLOAD_FOLDER_BASE_URL + item?.photo
@@ -39,26 +39,6 @@ const SuggestedPosts = ({ className, header, posts = [], tags }) => {
           </div>
         ))}
       </div>
-      <h2 className="font-roboto font-medium text-dark-hard mt-8 md:text-xl">
-        Tags
-      </h2>
-      {tags.length === 0 ? (
-        <p className="text-slate-500 text-xs mt-2">
-          There is not tags for this post
-        </p>
-      ) : (
-        <div className="flex flex-wrap gap-x-2 gap-y-2 mt-4">
-          {tags.map((item, index) => (
-            <Link
-              key={index}
-              to="/"
-              className="inline-block rounded-md px-3 py-1.5 bg-primary font-roboto text-xs text-white md:text-sm"
-            >
-              {item}
-            </Link>
-          ))}
-        </div>
-      )}
     </div>
   );
 };

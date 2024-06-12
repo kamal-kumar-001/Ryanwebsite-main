@@ -14,7 +14,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
     dispatch(orderCreateActions.orderCreateRequest());
 
     const {
-      userLogin: { userInfo },
+      user: { userInfo },
     } = getState();
 
     const config = {
@@ -43,7 +43,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
     dispatch(orderDetailsActions.orderDetailsRequest());
 
     const {
-      userLogin: { userInfo },
+      user: { userInfo },
     } = getState();
 
     const config = {
@@ -72,7 +72,7 @@ export const payOrder =
       dispatch(orderPayActions.orderPayRequest());
 
       const {
-        userLogin: { userInfo },
+        user: { userInfo },
       } = getState();
 
       const config = {
@@ -105,7 +105,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
     dispatch(orderDeliverActions.orderDeliverRequest());
 
     const {
-      userLogin: { userInfo },
+      user: { userInfo },
     } = getState();
 
     const config = {
@@ -137,7 +137,7 @@ export const listMyOrders = () => async (dispatch, getState) => {
     dispatch(orderListMyActions.orderListMyRequest());
 
     const {
-      userLogin: { userInfo },
+      user: { userInfo },
     } = getState();
 
     const config = {
@@ -165,7 +165,7 @@ export const listOrders = () => async (dispatch, getState) => {
     dispatch(orderListActions.orderListRequest());
 
     const {
-      userLogin: { userInfo },
+      user: { userInfo },
     } = getState();
 
     const config = {

@@ -15,6 +15,7 @@ export const signup = async ({ name, email, password }) => {
   }
 };
 
+
 export const login = async ({ email, password }) => {
   try {
     const { data } = await axios.post("/api/users/login", {

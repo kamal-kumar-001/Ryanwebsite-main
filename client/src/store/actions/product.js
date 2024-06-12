@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 // Constants
 const PRODUCT_DETAILS_REQUEST = 'PRODUCT_DETAILS_REQUEST';
 const PRODUCT_DETAILS_SUCCESS = 'PRODUCT_DETAILS_SUCCESS';

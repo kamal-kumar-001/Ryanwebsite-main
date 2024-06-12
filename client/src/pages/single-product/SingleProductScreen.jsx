@@ -15,7 +15,7 @@ const SingleProductScreen = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const userLogin = useSelector((state) => state.userLogin) || {};
+  const userLogin = useSelector((state) => state.user) || {};
   const { userInfo } = userLogin;
 
   useEffect(() => {

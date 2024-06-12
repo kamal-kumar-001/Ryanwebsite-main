@@ -3,12 +3,15 @@ const mongoose = require("mongoose");
 const orderItemSchema = mongoose.Schema({
   name: { type: String, required: true },
   qty: { type: Number, required: true },
-  image: { type: String, required: true },
+  image: { type: String},
   price: { type: Number, required: true },
   product: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "Product" },
 });
 
 const shippingAddressSchema = mongoose.Schema({
+  name: { type: String, required: true },
+  phone: { type: String, required: true },
+  email: { type: String },
   address: { type: String, required: true },
   city: { type: String, required: true },
   postalCode: { type: String, required: true },

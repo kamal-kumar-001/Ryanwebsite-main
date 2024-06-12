@@ -1,0 +1,27 @@
+
+.podcast-card{
+    width: 100%;
+}
+.image-container{
+    width: 100%;
+}
+
+.podcast-content{
+    width: 100%;
+}
+.podcast-title{
+
+    font-size: 30px;
+    font-weight: 500;
+    color: rgb(229, 130, 65);
+
+}
+.podcast-title:hover{
+    text-decoration: underline;
+    color: rgb(182,48,42);
+}
+
+.podcast-caption{
+    font-size: 20px;
+    color: black;
+}

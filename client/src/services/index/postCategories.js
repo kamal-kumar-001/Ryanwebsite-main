@@ -86,3 +86,4 @@ export const getSingleCategory = async ({ slug }) => {
     throw new Error(error.message);
   }
 };
+

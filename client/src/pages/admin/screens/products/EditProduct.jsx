@@ -102,7 +102,7 @@ const EditProduct = () => {
     }
     updatedData.append(
       "document",
-      JSON.stringify({ name, slug: productSlug, user: userState.userInfo,  countInStock, price, rating, reviews })
+      JSON.stringify({ name, slug: productSlug, user: userState.userInfo, image: photo, countInStock, price, rating, reviews })
     );
     mutateUpdateProductDetail({
       updatedData,

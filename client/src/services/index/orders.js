@@ -1,9 +1,15 @@
 import axios from "axios";
 
-export const getAllOrders = async (searchKeyword = "", page = 1, limit = 10) => {
+export const getAllOrders = async (token, searchKeyword = "", page = 1, limit = 10) => {
   try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
     const { data, headers } = await axios.get(
-      `/api/orders?searchKeyword=${searchKeyword}&page=${page}&limit=${limit}`
+      `/api/orders?searchKeyword=${searchKeyword}&page=${page}&limit=${limit}`, 
+      config
     );
     return { data, headers };
   } catch (error) {
@@ -13,9 +19,9 @@ export const getAllOrders = async (searchKeyword = "", page = 1, limit = 10) => 
   }
 };
 
-export const getSingleOrder = async ({ slug }) => {
+export const getSingleOrder = async ({ id }) => {
   try {
-    const { data } = await axios.get(`/api/orders/${slug}`);
+    const { data } = await axios.get(`/api/orders/${id}`);
     return data;
   } catch (error) {
     if (error.response && error.response.data.message)
@@ -24,7 +30,7 @@ export const getSingleOrder = async ({ slug }) => {
   }
 };
 
-export const deleteOrder = async ({ slug, token }) => {
+export const deleteOrder = async ({ id, token }) => {
   try {
     const config = {
       headers: {
@@ -32,7 +38,7 @@ export const deleteOrder = async ({ slug, token }) => {
       },
     };
 
-    const { data } = await axios.delete(`/api/orders/${slug}`, config);
+    const { data } = await axios.delete(`/api/orders/${id}`, config);
     return data;
   } catch (error) {
     if (error.response && error.response.data.message)

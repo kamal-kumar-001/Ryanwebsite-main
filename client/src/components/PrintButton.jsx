@@ -17,8 +17,10 @@ const PrintButton = ({ contentRef }) => {
   };
 
   return (
-    <button onClick={printContent} className="px-6 py-2.5 flex items-center gap-2 rounded-lg bg-primary
-    text-white font-semibold disabled:opacity-70 disabled:cursor-not-allowed">
+    <button onClick={printContent} className="px-6 py-2.5 flex items-center gap-2 rounded-lg 
+    text-white font-semibold disabled:opacity-70 disabled:cursor-not-allowed"
+    style={{backgroundColor:'#ff7300'}}
+    >
       <MdPrint />
      <span>
      Print

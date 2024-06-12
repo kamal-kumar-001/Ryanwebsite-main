@@ -7,8 +7,9 @@ export default function ShareModal() {
   return (
     <>
       <button
-        className="px-6 py-2.5 flex items-center gap-2 rounded-lg bg-primary
+        className="px-6 py-2.5 flex items-center gap-2 rounded-lg 
         text-white font-semibold disabled:opacity-70 disabled:cursor-not-allowed"
+        style={{backgroundColor:'#ff7300'}}
         type="button"
         onClick={() => setShowModal(true)}
       >
@@ -43,8 +44,6 @@ export default function ShareModal() {
                 {/*body*/}
                 <div className="p-5">
                 <SocialShareButtons
-                // url={encodeURI(window.location.href)}
-                // title={encodeURIComponent(data?.title)}
               />
                 </div>
               </div>

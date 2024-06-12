@@ -10,8 +10,7 @@ const Editor = ({ onDataChange, content, editable }) => {
     extensions: extensions,
     editorProps: {
       attributes: {
-        class:
-          "!prose !dark:prose-invert prose-sm sm:prose-base w-full max-w-none my-7 border-2  focus:outline-none prose-pre:bg-[#282c34] prose-pre:text-[#abb2bf]",
+        class: "!dark:prose-invert prose-sm sm:prose-base  my-7 focus:outline-none prose-pre:bg-[#282c34] prose-pre:text-[#abb2bf] ",
       },
     },
     onUpdate: ({ editor }) => {
@@ -22,15 +21,17 @@ const Editor = ({ onDataChange, content, editable }) => {
   });
 
   return (
-    <div className="w-full max-w-none relative">
-      {editable && <MenuBar editor={editor} />}
-      <EditorContent editor={editor} />
+    <div className="Editor w-full">
+      {editable && <MenuBar editor={editor}/>}
+      <EditorContent editor={editor}/>
     </div>
   );
 };
+
 Editor.propTypes = {
   onDataChange: PropTypes.func.isRequired,
   content: PropTypes.string.isRequired,
   editable: PropTypes.bool.isRequired,
 };
+
 export default Editor;

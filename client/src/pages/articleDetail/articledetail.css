@@ -1,0 +1,14 @@
+
+
+.article-detail-container{
+    display: flex;
+    /* border: 1px solid red; */
+    justify-content: space-around;
+}
+
+.article-suggest-post{
+    /* border: 1px solid blue; */
+    padding-top: 10px;
+    margin-top: 5%;
+    margin-right: 10px;
+}

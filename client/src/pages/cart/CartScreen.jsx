@@ -6,23 +6,21 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
-// import Layout from "../../layouts/Layout";
 // import Header from "../../layouts/Header";
 // import Cart from "../../components/cart/Cart";
 // import UserProfileButton from "../../components/UserProfileButton";
 import CartProductList from "./components/CartProductList";
 import { addToCart } from "../../actions/cartActions";
 import Alert from "../../components/Alert";
-import MainLayout from "../../components/MainLayout";
 // import BackButton from "../../components/BackButton";
+import MainLayout from "../../components/MainLayout";
 
 const CartScreen = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state?.cart);
   const { cartItems } = cart;
-  const { id: productId } = useParams();
+  const { slug: productId } = useParams();
   const [searchParams] = useSearchParams();
 
   const qty = searchParams.get("qty") ? Number(searchParams.get("qty")) : 1;
@@ -50,7 +48,7 @@ const CartScreen = () => {
         {cartItems.length === 0 ? (
           <Alert>
             Your cart is empty{" "}
-            <Link to="/shop" className="link">
+            <Link to="/" className="link">
               Go to Shop
             </Link>
           </Alert>

@@ -1,56 +1,34 @@
-import {  useState, useRef } from "react";
-import { Link, useParams } from "react-router-dom";
-
+import { useState, useRef } from "react";
+import { useParams } from "react-router-dom";
 import BreadCrumbs from "../../components/BreadCrumbs";
-// import CommentsContainer from "../../components/comments/CommentsContainer";
 import MainLayout from "../../components/MainLayout";
 import { images, stables } from "../../constants";
-import SuggestedPosts from "./container/SuggestedPosts";
 import { useQuery } from "@tanstack/react-query";
-// import { getAllPosts, getSinglePost } from "../../services/index/posts";
 import ArticleDetailSkeleton from "./components/PodcastDetailSkeleton";
 import ErrorMessage from "../../components/ErrorMessage";
-// import { useSelector } from "react-redux";
-// import parseJsonToHtml from "../../utils/parseJsonToHtml";
 import Editor from "../../components/editor/Editor";
-// import ShareModal from "../../components/ShareModal";
-// import PrintButton from "../../components/PrintButton";
-import { getAllPodcasts, getSinglePodcast } from "../../services/index/podcasts";
-// import Rating from "../../components/Rating";
+import { getSinglePodcast } from "../../services/index/podcasts";
+import { AiFillYoutube, AiFillAmazonCircle, AiFillApple } from "react-icons/ai";
+import "./podcastdetail.css";
+import AudioPlayer from "../../components/Audio";
 
 const PodcastDetailPage = () => {
   const { slug } = useParams();
   const contentRef = useRef(null);
-  // const userState = useSelector((state) => state.user);
-  const [breadCrumbsData, setbreadCrumbsData] = useState([]);
-  // const [body, setBody] = useState(null);
+
+  const [breadCrumbsData, setBreadCrumbsData] = useState([]);
 
   const { data, isLoading, isError } = useQuery({
     queryFn: () => getSinglePodcast({ slug }),
     queryKey: ["podcast", slug],
     onSuccess: (data) => {
-      setbreadCrumbsData([
+      setBreadCrumbsData([
         { name: "Home", link: "/" },
         { name: "Podcast", link: "/podcast" },
         { name: "Podcast title", link: `/podcast/${data.slug}` },
       ]);
-      // setBody(parseJsonToHtml(data?.body));
     },
   });
-
-  const { data: podcastsData } = useQuery({
-    queryFn: () => getAllPodcasts(),
-    queryKey: ["podcasts"],
-  });
-
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
-  // const [rating, setRating] = useState(0);
-
-  // const handleRating = (value) => {
-  //   setRating(value);
-  // };
 
   return (
     <MainLayout>
@@ -60,11 +38,17 @@ const PodcastDetailPage = () => {
         <ErrorMessage message="Couldn't fetch the post detail" />
       ) : (
         <div className="">
-          <section ref={contentRef} className="container mx-auto max-w-5xl flex flex-col px-5 py-5 lg:flex-row lg:gap-x-5 lg:items-start">
-            <article className="flex-1">
+          <section
+            ref={contentRef}
+            className="container mx-auto flex max-w-5xl flex-col px-5 py-5 lg:flex-row lg:items-start lg:gap-x-5"
+          >
+            <article className="flex flex-1 flex-col items-start">
               <BreadCrumbs data={breadCrumbsData} />
+              <h1 className="mt-4 w-full font-roboto text-xl font-medium text-dark-hard md:text-[26px] pd-title-screen">
+                {data?.title}
+              </h1>
               <img
-                className="rounded-xl w-full"
+                className="w-full py-6"
                 src={
                   data?.photo
                     ? stables.UPLOAD_FOLDER_BASE_URL + data?.photo
@@ -72,62 +56,83 @@ const PodcastDetailPage = () => {
                 }
                 alt={data?.title}
               />
-              <div className="mt-4 flex gap-2">
-                {data?.categories.map((category, index) => (
-                  <Link key={index}
-                    to={`/blog?category=${category.name}`}
-                    className="text-primary text-sm font-roboto inline-block md:text-base"
-                  >
-                    {category.name}
-                  </Link>
-                ))}
+              <h1>June 8, 2024</h1>
+              <div className="pd-listen-icons">
+                <span>Listen on:</span>
+                <div className="pd-icons">
+                  <AiFillYoutube />
+                  <AiFillAmazonCircle />
+                  <AiFillApple />
+                </div>
               </div>
-              <h1 className="text-xl font-medium font-roboto mt-4 text-dark-hard md:text-[26px]">
-                {data?.title}
-              </h1>
-              <iframe style={{borderRadius: '12px'}} src={data?.audio} width="100%" height="352" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
               <div className="w-full">
+                <AudioPlayer />
+              </div>
+              <div>Reading Time: 7 minutes</div>
+              <div className="pd-body-top">
+                <span>what have we discussed with Dyanamicx</span>
+                <span>
+                  <li>Lorem ipsum dolor sit amet.</li>
+                  <li>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </li>
+                  <li>Lorem ipsum dolor, sit amet consectetur adipisicing.</li>
+                  <li>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Nobis?
+                  </li>
+                </span>
+              </div>
+              <div className="pd-youtube">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/HRxARYNkOSo?si=Ovvlcm6B70dq7oav"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
+              </div>
+              <div className="pd-body-content">
                 {!isLoading && !isError && (
                   <Editor content={data?.body} editable={false} />
                 )}
               </div>
-              {/* <CommentsContainer
-              comments={data?.comments}
-              className="mt-10"
-              logginedUserId={userState?.userInfo?._id}
-              postSlug={slug}
-            /> */}
+              <div className="pd-sponsers">
+                <span>Please scroll down for Episode Sponsers, Resorces</span>
+                <h3 style={{ fontWeight: "bold", paddingTop: "3%" }}>
+                  EPISODE SPONSERS:
+                </h3>
+                <li>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
+                  voluptatem amet optio culpa nemo eum suscipit ad
+                  necessitatibus, atque enim ex nam nulla! Debitis id ex
+                  repellendus aliquid. Cupiditate, voluptas.
+                </li>
+                <li>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed
+                  possimus minima provident modi fugit. Tempora accusamus amet
+                  quasi dolores quo.
+                </li>
+                <li>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Eligendi non, maxime blanditiis totam nulla rerum possimus
+                  doloribus eveniet similique. Reiciendis repudiandae harum cum
+                  numquam alias error minus neque necessitatibus labore!
+                </li>
+              </div>
+              <div className="pd-upcoming-events">
+                <span>Upcoming Events: </span>
+                <ul>
+                  <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
+                  <li style={{ paddingLeft: "10%" }}>
+                    Little details about the event
+                  </li>
+                </ul>
+              </div>
             </article>
-
-          </section>
-          {/* <div className="mt-7 p-10 container mx-auto max-w-5xl rounded bg-purple-500 "> 
-          <div className=" text-center flex flex-col items-center ">
-            <img src="https://www.christineavanti.com/wp-content/uploads/2024/01/Christine-Green-Smoothie-e1705092833846-500x500.jpg" alt="photo" 
-            className=" w-32 mt-[-100px] h-32 border-white  rounded-xl border-8" />
-            <h4 className="text-3xl">Green Smoothie</h4>
-            <p className="my-5">
-            Remember that green smoothie I couldnt stop raving about? 🌿 Well, after tweaking a Goop newsletter gem Ive nailed the perfect recipe! Loaded with antioxidants healthy fats and a whopping 22 grams of fiber, its a game-changer for digestion and keeping you full for hours. Check out my tutorial video for the recipe and get ready to blend your way to deliciousness! Best of all it has 22 grams of fiber…which is amazing for digestion!
-            </p>
-          </div>
-          <div className="flex items-center justify-center gap-4">
-              <ShareModal />
-              <PrintButton contentRef={contentRef} />
-          </div>
-            </div> */}
-          <section className="container mx-auto max-w-5xl flex flex-col px-5 py-5 lg:flex-row lg:gap-x-5 lg:items-start">
-            <SuggestedPosts
-              header="Latest Article"
-              posts={podcastsData?.data.slice(0, 3)} // Limiting to the first 3 posts
-              tags={data?.tags}
-              className="mt-8 lg:mt-0 lg:max-w-xs"
-            />
-            <SuggestedPosts
-              header="Similar Article"
-              posts={podcastsData?.data.slice(0, 3)} // Limiting to the first 3 posts
-              tags={data?.tags}
-              className="mt-8 lg:mt-0 lg:max-w-xs"
-            />
-            
           </section>
         </div>
       )}

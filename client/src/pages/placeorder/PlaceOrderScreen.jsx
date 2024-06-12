@@ -126,25 +126,25 @@ const PlaceOrderScreen = () => {
               <div className="flex justify-between item-center">
                 <span className="text-gray-500">Items</span>
                 <span className="text-lime-700 font-bold">
-                  ${addDecimals(itemsPrice)}
+                  Rs. {addDecimals(itemsPrice)}
                 </span>
               </div>
               <div className="flex justify-between item-center">
                 <span className="text-gray-500">Shipping</span>
                 <span className="text-lime-700 font-bold">
-                  ${addDecimals(shippingPrice)}
+                  Rs. {addDecimals(shippingPrice)}
                 </span>
               </div>
               <div className="flex justify-between item-center">
                 <span className="text-gray-500">Tax</span>
                 <span className="text-lime-700 font-bold">
-                  ${addDecimals(taxPrice)}
+                 Rs. {addDecimals(taxPrice)}
                 </span>
               </div>
               <div className="flex justify-between item-center">
                 <span className="text-gray-500">Total</span>
                 <span className="text-lime-700 font-bold">
-                  ${addDecimals(totalPrice)}
+                 Rs. {addDecimals(totalPrice)}
                 </span>
               </div>
             </div>

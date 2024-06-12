@@ -1,0 +1,106 @@
+.audio-player {
+  background-color: #f1ddd4;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
+  width: 80%;
+  height: 100%;
+
+}
+
+.audio-image img {
+  border-radius: 120px;
+  border: 2px solid orange;
+}
+
+.audio-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 60%;
+}
+
+.play-pause-button,
+.skip-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  color: #d16e3b; 
+  padding-left: 20px;
+}
+
+.audio-title {
+  padding-left: 5%;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  width: 1%;
+  font-size: 20px;
+  font-weight: bold;
+  color: #b35d0b;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+@media  (max-width:1037px){
+
+  .audio-player {
+    width: 100%;
+    height: 180px;
+  }
+  .audio-player img{
+    height: 150px;
+  }
+
+}
+
+.audio-title span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 10s linear infinite;
+}
+
+.audio-title span::after {
+  padding-left: 100%;
+}
+
+.audio-all-buttons{
+  display: flex;
+}
+
+.timeline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+
+}
+
+.progress-bar-container {
+  margin-top: 5%;
+  flex: 1;
+  height: 50px;
+  background: url('../../src/files/waveform.jpg') no-repeat center center;
+  background-size: cover;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: rgb(211,31,32,0.5); /* Darken effect */
+  transition: width 0.1s;
+}
+

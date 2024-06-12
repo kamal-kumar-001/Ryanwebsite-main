@@ -12,6 +12,8 @@ const ShippingScreen = () => {
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
 
+  const [name, setName] = useState(shippingAddress.name || "");
+  const [phone, setPhone] = useState(shippingAddress.phone || "");
   const [address, setAddress] = useState(shippingAddress.address || "");
   const [city, setCity] = useState(shippingAddress.city || "");
   const [postalCode, setPostalCode] = useState(
@@ -21,7 +23,7 @@ const ShippingScreen = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(saveShippingAddress({ address, city, postalCode, country }));
+    dispatch(saveShippingAddress({ name, phone, address, city, postalCode, country }));
     navigate("/payment");
   };
 
@@ -31,12 +33,40 @@ const ShippingScreen = () => {
         <CheckoutSteps step1 step2 />
         <h1 className="text-3xl mb-6 mt-8">Shipping</h1>
         <form onSubmit={submitHandler}>
-          <div className="form-control">
-            <label className="label" htmlFor="address">
-              <span className="label-text">Address</span>
+          <div className="flex flex-col mb-6 w-full">
+            <label className="label" htmlFor="name">
+              <span className="text-[#5a7184] font-semibold block">Name</span>
             </label>
             <input
-              className="input input-bordered"
+              className="placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border border-[#c3cad9]"
+              id="name"
+              type="text"
+              placeholder="Enter your name"
+              value={name}
+              required
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div className="flex flex-col mb-6 w-full">
+            <label className="label" htmlFor="phone">
+              <span className="text-[#5a7184] font-semibold block">Phone</span>
+            </label>
+            <input
+              className="placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border border-[#c3cad9]"
+              id="phone"
+              type="text"
+              placeholder="Enter your phone number"
+              value={phone}
+              required
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          </div>
+          <div className="flex flex-col mb-6 w-full">
+            <label className="label" htmlFor="address">
+              <span className="text-[#5a7184] font-semibold block">Address</span>
+            </label>
+            <input
+              className="placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border border-[#c3cad9]"
               id="address"
               type="text"
               placeholder="Enter your address"
@@ -45,12 +75,12 @@ const ShippingScreen = () => {
               onChange={(e) => setAddress(e.target.value)}
             />
           </div>
-          <div className="form-control">
+          <div className="flex flex-col mb-6 w-full">
             <label className="label" htmlFor="city">
-              <span className="label-text">City</span>
+              <span className="text-[#5a7184] font-semibold block">City</span>
             </label>
             <input
-              className="input input-bordered"
+              className="placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border border-[#c3cad9]"
               id="city"
               type="text"
               placeholder="Enter your city"
@@ -59,12 +89,12 @@ const ShippingScreen = () => {
               onChange={(e) => setCity(e.target.value)}
             />
           </div>
-          <div className="form-control">
+          <div className="flex flex-col mb-6 w-full">
             <label className="label" htmlFor="postalCode">
-              <span className="label-text">Postal Code</span>
+              <span className="text-[#5a7184] font-semibold block">Postal Code</span>
             </label>
             <input
-              className="input input-bordered"
+              className="placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border border-[#c3cad9]"
               id="postalCode"
               type="text"
               placeholder="Enter your postal code"
@@ -73,12 +103,12 @@ const ShippingScreen = () => {
               onChange={(e) => setPostalCode(e.target.value)}
             />
           </div>
-          <div className="form-control">
+          <div className="flex flex-col mb-6 w-full">
             <label className="label" htmlFor="country">
-              <span className="label-text">Country</span>
+              <span className="text-[#5a7184] font-semibold block">Country</span>
             </label>
             <input
-              className="input input-bordered"
+              className="placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border border-[#c3cad9]"
               id="country"
               type="text"
               placeholder="Enter your country"

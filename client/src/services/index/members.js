@@ -54,3 +54,4 @@ export const deleteMember = async ({ slug, token }) => {
     throw new Error(error.message);
   }
 };
+

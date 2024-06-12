@@ -38,7 +38,6 @@ const deleteProduct = asyncHandler(async (req, res) => {
   const product = await Product.findOne({ slug: req.params.slug });
   if (product) {
     await product.remove();
-    // fileRemover(product.photo);
     res.json({ message: "Product removed" });
   } else {
     res.status(404);
@@ -58,12 +57,12 @@ const createProduct = asyncHandler(async (req, res) => {
   const product = new Product({
     name: productName,
     slug: generateSlug(productName),
-    price: 99,
+    price: 0,
     user: req.user._id,
-    photo: "",
+    image: "/images/sample.jpg",
     // brand: "Sample brand",
     category: "Sample category",
-    countInStock: 10,
+    countInStock: 0,
     description: "Sample description",
     rating: 0,
     reviews: [],
@@ -127,17 +126,17 @@ const updateProduct = async (req, res, next) => {
       } else {
         // everything went well
         if (req.file) {
-          let filename = product.photo;
+          let filename = product.image;
           if (filename) {
             fileRemover(filename);
           }
-          product.photo = req.file.filename;
+          product.image = req.file.filename;
           handleUpdateProductData(req.body.document);
         } else {
-          let filename = product.photo;
-          product.photo = "";
+          // let filename = product.image;
+          // product.image = "";
           // if (filename) {
-            fileRemover(filename);
+          //   fileRemover(filename);
           // }
           handleUpdateProductData(req.body.document);
         }

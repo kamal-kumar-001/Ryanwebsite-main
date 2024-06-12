@@ -1,17 +1,17 @@
-import { images, stables } from "../../../../constants";
-import { deletePost, getAllPosts } from "../../../../services/index/posts";
+// import { images, stables } from "../../../../constants";
+import { deleteOrder, getAllOrders } from "../../../../services/index/orders";
 // import Pagination from "../../../../components/Pagination";
 // import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { useDataTable } from "../../../../hooks/useDataTable";
 import DataTable from "../../components/DataTable";
 
-const ManagePosts = () => {
+const ManageOrders = () => {
   const {
     userState,
     currentPage,
     searchKeyword,
-    data: postsData,
+    data: ordersData,
     isLoading,
     isFetching,
     isLoadingDeleteData,
@@ -21,12 +21,12 @@ const ManagePosts = () => {
     deleteDataHandler,
     setCurrentPage,
   } = useDataTable({
-    dataQueryFn: () => getAllPosts(searchKeyword, currentPage),
-    dataQueryKey: "posts",
-    deleteDataMessage: "Post is deleted",
-    mutateDeleteFn: ({ slug, token }) => {
-      return deletePost({
-        slug,
+    dataQueryFn: () => getAllOrders(userState.userInfo.token, searchKeyword, currentPage),
+    dataQueryKey: "orders",
+    deleteDataMessage: "Order is deleted",
+    mutateDeleteFn: ({ id, token }) => {
+      return deleteOrder({
+        id,
         token,
       });
     },
@@ -40,20 +40,20 @@ const ManagePosts = () => {
       searchKeywordOnSubmitHandler={submitSearchKeywordHandler}
       searchKeywordOnChangeHandler={searchKeywordHandler}
       searchKeyword={searchKeyword}
-      tableHeaderTitleList={["ID", "User", "Date", "Payment Status", "Shipment Status"]}
+      tableHeaderTitleList={["ID", "User", "Date", "Payment Status", "Shipment Status", "Action"]}
       isLoading={isLoading}
       isFetching={isFetching}
-      data={postsData?.data}
+      data={ordersData?.data}
       setCurrentPage={setCurrentPage}
       currentPage={currentPage}
-      headers={postsData?.headers}
+      headers={ordersData?.headers}
       userState={userState}
     >
-      {postsData?.data.map((post,index) => (
+      {ordersData?.data.map((post,index) => (
         <tr key={index}>
           <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
             <div className="flex items-center">
-              <div className="flex-shrink-0">
+              {/* <div className="flex-shrink-0">
                 <a href="/" className="relative block">
                   <img
                     src={
@@ -65,26 +65,15 @@ const ManagePosts = () => {
                     className="mx-auto object-cover rounded-lg w-10 aspect-square"
                   />
                 </a>
-              </div>
+              </div> */}
               <div className="ml-3">
-                <p className="text-gray-900 whitespace-no-wrap">{post.title}</p>
+                <p className="text-gray-900 whitespace-no-wrap">{post._id}</p>
               </div>
             </div>
           </td>
           <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
             <p className="text-gray-900 whitespace-no-wrap">
-              {post.categories.length > 0
-                ? post.categories
-                    .slice(0, 3)
-                    .map(
-                      (category, index) =>
-                        `${category.title}${
-                          post.categories.slice(0, 3).length === index + 1
-                            ? ""
-                            : ", "
-                        }`
-                    )
-                : "Uncategorized"}
+              {post.user.name}
             </p>
           </td>
           <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
@@ -97,16 +86,14 @@ const ManagePosts = () => {
             </p>
           </td>
           <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-            <div className="flex gap-x-2">
-              {post.tags.length > 0
-                ? post.tags.map((tag, index) => (
-                    <p key={index}>
-                      {tag}
-                      {post.tags.length - 1 !== index && ","}
-                    </p>
-                  ))
-                : "No tags"}
-            </div>
+            <p className="text-gray-900 whitespace-no-wrap">
+              {post.isPaid ? "Paid" : "Not Paid" }
+            </p>
+          </td>
+          <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
+            <p className="text-gray-900 whitespace-no-wrap">
+              {post.isDelivered ? "Delivered" : "Not Delivered" }
+            </p>
           </td>
           <td className="px-5 py-5 text-sm bg-white border-b border-gray-200 space-x-5">
             <button
@@ -115,7 +102,7 @@ const ManagePosts = () => {
               className="text-red-600 hover:text-red-900 disabled:opacity-70 disabled:cursor-not-allowed"
               onClick={() => {
                 deleteDataHandler({
-                  slug: post?.slug,
+                  id: post._id,
                   token: userState.userInfo.token,
                 });
               }}
@@ -123,7 +110,7 @@ const ManagePosts = () => {
               Delete
             </button>
             <Link
-              to={`/admin/posts/manage/edit/${post?.slug}`}
+              to={`/admin/orders/manage/edit/${post?.slug}`}
               className="text-green-600 hover:text-green-900"
             >
               Edit
@@ -135,4 +122,4 @@ const ManagePosts = () => {
   );
 };
 
-export default ManagePosts;
+export default ManageOrders;
