@@ -37,6 +37,7 @@ import Podcastpage from "./pages/podcast/Podcast";
 import ManagePodcasts from "./pages/admin/screens/podcasts/ManagePodcast";
 import EditPodcast from "./pages/admin/screens/podcasts/EditPodcast";
 import PodcastDetailPage from "./pages/podcastDetail/PodcastDetailPage";
+import MyOrders from "./pages/myorders/MyOrders";
 
 
 
@@ -61,6 +62,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/myorders" element={<MyOrders />} />
         <Route path="/shop/" element={<ProductScreen />} />
         <Route path="/product/:id" element={<SingleProductScreen />} />
         <Route path="/cart">

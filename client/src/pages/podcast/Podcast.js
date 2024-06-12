@@ -47,7 +47,7 @@ const PodcastPage = () => {
   return (
     <MainLayout>
       <div className="pd-main-layout">
-        <section className="container mx-auto mt-5 flex flex-col px-5">
+        <section className="container lg:mx-auto md:mx-auto  mt-5 flex flex-col px-5">
           <h2
             style={{
               fontSize: "30px",
@@ -88,10 +88,10 @@ const PodcastPage = () => {
             />
           )}
         </section>
-        <div className="pd-search-container">
+        {/* <div className="pd-search-container">
           <input type="text" placeholder="Search..." className="pd-search-input" />
           <button className="pd-search-button">Search</button>
-        </div>
+        </div> */}
       </div>
     </MainLayout>
   );
