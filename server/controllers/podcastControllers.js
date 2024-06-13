@@ -47,12 +47,16 @@ const updatePodcast = async (req, res, next) => {
     const upload = uploadPicture.single("podcastPicture");
 
     const handleUpdatePodcastData = async (data) => {
-      const { title, caption, slug, body,audio, tags, categories } = JSON.parse(data);
+      const { title, caption, slug, body,audio , youtubeaudio, amazonaudio,appleaudio,spotifyaudio, tags, categories } = JSON.parse(data);
       podcast.title = title || podcast.title;
       podcast.caption = caption || podcast.caption;
       podcast.slug = slug || podcast.slug;
       podcast.body = body || podcast.body;
       podcast.audio = audio || podcast.audio;
+      podcast.youtubeaudio = youtubeaudio || podcast.youtubeaudio;
+      podcast.amazonaudio = amazonaudio || podcast.amazonaudio;
+      podcast.appleaudio = appleaudio || podcast.appleaudio;
+      podcast.spotifyaudio = spotifyaudio || podcast.spotifyaudio;
       podcast.tags = tags || podcast.tags;
       podcast.categories = categories || podcast.categories;
       const updatedPodcast = await podcast.save();

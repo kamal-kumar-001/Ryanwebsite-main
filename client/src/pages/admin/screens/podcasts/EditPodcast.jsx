@@ -30,6 +30,10 @@ const EditPodcast = () => {
   const [initialPhoto, setInitialPhoto] = useState(null);
   const [photo, setPhoto] = useState(null);
   const [audio, setAudio] = useState("");
+  const [youtubeAudio, setYoutubeAudio] = useState("");
+  const [amazonAudio, setAmazonAudio] = useState("");
+  const [appleAudio, setAppleAudio] = useState("");
+  const [spotifyAudio, setSpotifyAudio] = useState("");
   const [body, setBody] = useState(null);
   const [categories, setCategories] = useState(null);
   const [title, setTitle] = useState("");
@@ -97,7 +101,7 @@ const EditPodcast = () => {
 
     updatedData.append(
       "document",
-      JSON.stringify({ body,audio, categories, title, tags, slug: podcastSlug, caption })
+      JSON.stringify({ body,audio, youtubeaudio:youtubeAudio, amazonaudio: amazonAudio, appleaudio: appleAudio, spotifyaudio: spotifyAudio, categories, title, tags, slug: podcastSlug, caption })
     );
     mutateUpdatePodcastDetail({
       updatedData,
@@ -217,6 +221,62 @@ const EditPodcast = () => {
                   setAudio(e.target.value)
                 }
                 placeholder="podcast audio link"
+              />
+            </div>
+            <div className="d-form-control w-full">
+              <label className="d-label" htmlFor="youtubeaudio">
+                <span className="d-label-text">Youtube Link</span>
+              </label>
+              <input
+                id="youtubeaudio"
+                value={youtubeAudio}
+                className="d-input d-input-bordered border-slate-300 !outline-slate-300 text-xl font-medium font-roboto text-dark-hard"
+                onChange={(e) =>
+                  setYoutubeAudio(e.target.value)
+                }
+                placeholder="podcast Youtube link"
+              />
+            </div>
+            <div className="d-form-control w-full">
+              <label className="d-label" htmlFor="amazonaudio">
+                <span className="d-label-text">Amazon Audio</span>
+              </label>
+              <input
+                id="amazonaudio"
+                value={amazonAudio}
+                className="d-input d-input-bordered border-slate-300 !outline-slate-300 text-xl font-medium font-roboto text-dark-hard"
+                onChange={(e) =>
+                  setAmazonAudio(e.target.value)
+                }
+                placeholder="podcast Amazon audio link"
+              />
+            </div>
+            <div className="d-form-control w-full">
+              <label className="d-label" htmlFor="appleaudio">
+                <span className="d-label-text">Apple Audio</span>
+              </label>
+              <input
+                id="appleaudio"
+                value={appleAudio}
+                className="d-input d-input-bordered border-slate-300 !outline-slate-300 text-xl font-medium font-roboto text-dark-hard"
+                onChange={(e) =>
+                  setAppleAudio(e.target.value)
+                }
+                placeholder="podcast Apple audio link"
+              />
+            </div>
+            <div className="d-form-control w-full">
+              <label className="d-label" htmlFor="spotifyaudio">
+                <span className="d-label-text">Spotify Audio</span>
+              </label>
+              <input
+                id="spotifyaudio"
+                value={spotifyAudio}
+                className="d-input d-input-bordered border-slate-300 !outline-slate-300 text-xl font-medium font-roboto text-dark-hard"
+                onChange={(e) =>
+                  setSpotifyAudio(e.target.value)
+                }
+                placeholder="podcast Spotify audio link"
               />
             </div>
             <div className="mb-5 mt-2">
