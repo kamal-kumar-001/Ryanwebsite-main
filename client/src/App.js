@@ -21,6 +21,7 @@ import Service from "./pages/service/kids/Service";
 import Fitness from './pages/service/fitness/Fitness';
 import Medical from './pages/service/medical/Medical';
 import International from './pages/service/international/International';
+import Sports from './pages/service/sports/Sports';
 import ManageProducts from "./pages/admin/screens/products/ManageProducts";
 import ManageOrders from "./pages/admin/screens/orders/ManageOrders";
 import EditProduct from "./pages/admin/screens/products/EditProduct";
@@ -54,6 +55,7 @@ function App() {
         <Route path="/service/kids" element={<Service/>}/>
         <Route path="/service/fitness" element={<Fitness/>}/>
         <Route path="/service/medical" element={<Medical/>}/>
+        <Route path="/service/sports" element={<Sports/>}/>
         <Route path="/service/international" element={<International/>}/>
         <Route path="/eatwell" element={<Eatwell/>}/>
         <Route path="/blog" element={<BlogPage />} />

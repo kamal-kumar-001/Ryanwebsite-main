@@ -1,4 +1,5 @@
 import "../service.css";
+import { useNavigate } from 'react-router-dom';
 import MainLayout from "../../../components/MainLayout";
 import Slideshow from "../../../components/Imageslider";
 import TypingEffect from "react-typing-effect";
@@ -13,6 +14,14 @@ import fitnessimage from '../../../components/images/fitness.jpg'
 import lineimage from "../../../components/images/line.png"
 
 function Medical() {
+
+  const navigate = useNavigate();
+
+  const navigateTo = (path) => {
+    console.log(`Navigation to: '${path}`)
+    navigate(path);
+  };
+
   return (
     <MainLayout>
       <div className="Top-section">
@@ -84,38 +93,38 @@ function Medical() {
         <img src={sportsimage} alt="Logo" />
         <h1>Sports Nutrition</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis rerum dolorum quidem iure sunt quia atque quod ipsam deleniti illo?Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, minus.</p>
-        <button>Learn More</button>
+        <button onClick={() => navigateTo('/service/sports')}>Learn More</button>
         </div>
         <div className="other-services-container">
         <img src={clientimage} alt="" />
         <h1>International Clients</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis rerum dolorum quidem iure sunt quia atque quod ipsam deleniti illo? sunt quia atque quod ipsam deleniti illo?Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, minus.</p>
-        <button>Learn More</button>
+        <button onClick={() => navigateTo('/service/international')}>Learn More</button>
 
         </div>
         <div className="other-services-container">
         <img src={medicalimage} alt="" />
         <h1>Medical Nutrition</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis rerum dolorum quidem iure sunt quia atque quod ipsam deleniti illo? sunt quia atque quod ipsam deleniti illo?Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, minus.</p>
-        <button>Learn More</button>
+        <button onClick={() => navigateTo('/service/medical')}>Learn More</button>
         </div>
         <div className="other-services-container">
         <img src={fitnessimage} alt="" />
         <h1>Fitness Nutrition</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis rerum dolorum quidem iure sunt quia atque quod ipsam deleniti illo? sunt quia atque quod ipsam deleniti illo?Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, minus.</p>
-        <button>Learn More</button>
+        <button onClick={() => navigateTo('/service/fitness')}>Learn More</button>
         </div>
         <div className="other-services-container">
         <img src={nutriimage} alt="" />
         <h1>Nutrition For Health</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis rerum dolorum quidem iure sunt quia atque quod ipsam deleniti illo? sunt quia atque quod ipsam deleniti illo?Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, minus.</p>
-        <button>Learn More</button>
+        <button onClick={() => navigateTo('/service/kids')}>Learn More</button>
         </div>
         <div className="other-services-container">
         <img src={nutriimage} alt="" />
         <h1>Kids Nutrition</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis rerum dolorum quidem iure sunt quia atque quod ipsam deleniti ill sunt quia atque quod ipsam deleniti illo?Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, minus.o?</p>
-        <button>Learn More</button>
+        <button onClick={() => navigateTo('/service/kids')}>Learn More</button>
         </div>
       </div>
       <div className="Testimonials-heading">Testimonials

@@ -89,11 +89,3 @@
 .pd-navigation a:hover {
     text-decoration: underline;
 }
-
-
- @media (max-width: 768px) {
-    .pd-main-layout {
-        margin-left: 0px;
-        /* margin-right: auto; */
-    }
-} 

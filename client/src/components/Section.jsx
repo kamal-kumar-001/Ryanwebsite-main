@@ -38,18 +38,25 @@ function Section() {
                 </div>
             </div>
             <div className="logos">      
-          <div className="logos-slide">
+  <div className="logos-slide">
     <img src={image1} alt="logo" />
-    <img src={image3}/>
     <img src={image2} />
-    <img src={image4}/>
-    <img src={image5}/>
-    <img src={image6}/>
-    <img src={image7}/>
-    <img src={image1}/>
+    <img src={image3} />
+    <img src={image4} />
+    <img src={image5} />
+    <img src={image6} />
+    <img src={image7} />
+    
+    <img src={image1} alt="logo" />
+    <img src={image2} />
+    <img src={image3} />
+    <img src={image4} />
+    <img src={image5} />
+    <img src={image6} />
+    <img src={image7} />
   </div>
-
 </div>
+
      <hr style={{width:"80%", margin:'auto'}}></hr>
         </div>
     );

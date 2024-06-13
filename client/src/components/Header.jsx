@@ -16,11 +16,8 @@ const Navbar = () => {
   const [showMediaIcons, setShowMediaIcons] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const handleMenuClick = (e) => {
-    if (!e.target.closest('.social-media-desktop')) {
-      e.preventDefault();
-      setShowMediaIcons(!showMediaIcons);
-    }
+  const handleMenuClick = () => {
+    setShowMediaIcons(!showMediaIcons);
   };
 
   const handleDropdownMouseEnter = () => {
@@ -33,14 +30,14 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="main-nav" onClick={handleMenuClick}>
+      <nav className="main-nav">
         <div className="logo">
           <h2>
-            <img src={Logoimage} alt="Logo" />
+            <Link to={'/'}><img src={Logoimage} alt="Logo" /></Link>
           </h2>
         </div>
 
-        <div className={showMediaIcons ? "menu-link mobile-menu-link" : "menu-link"  }>
+        <div className={showMediaIcons ? "menu-link mobile-menu-link" : "menu-link"}>
           <ul className="only-to-hover">
             <li style={{fontSize:"20px"}}><Link to={'/'}>Home</Link></li>
             <li style={{fontSize:"20px"}}><Link to={'/shop/'}>Shop</Link></li>
@@ -76,7 +73,7 @@ const Navbar = () => {
                       </a>
                     </li>
                     <li>
-                      <a href="/" target="/">
+                      <a href="https://www.instagram.com/ryan_nutrition_coach/?hl=en" target="_blank" rel="noopener noreferrer">
                         <FaInstagramSquare className="instagram" />
                       </a>
                     </li>
@@ -100,12 +97,12 @@ const Navbar = () => {
         <div className="social-media">
           <ul className="social-media-desktop">
             <li>
-              <a href="https://www.facebook.com/ryanfernando"  target="_blank" rel="noopener noreferrer">
+              <a href="https://www.facebook.com/ryanfernando" target="_blank" rel="noopener noreferrer">
                 <FaFacebookSquare className="facebook" />
               </a>
             </li>
             <li>
-              <a href="/" target="/">
+              <a href="https://www.instagram.com/ryan_nutrition_coach/?hl=en" target="_blank" rel="noopener noreferrer">
                 <FaInstagramSquare className="instagram" />
               </a>
             </li>

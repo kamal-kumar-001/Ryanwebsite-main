@@ -236,7 +236,7 @@ const EditPost = () => {
                 />
               )}
             </div>
-            <div className="w-full">
+            <div className="w-full border-2">
               {isPostDataLoaded && (
                 <Editor
                   content={data?.body}

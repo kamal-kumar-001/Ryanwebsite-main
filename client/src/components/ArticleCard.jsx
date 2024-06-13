@@ -1,5 +1,3 @@
-// import { BsCheckLg } from "react-icons/bs";
-// import { AiOutlineClose } from "react-icons/ai";
 import PropTypes from 'prop-types';
 import { images, stables } from "../constants";
 import { Link } from "react-router-dom";

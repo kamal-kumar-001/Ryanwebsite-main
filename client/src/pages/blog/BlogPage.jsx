@@ -9,7 +9,8 @@ import MainLayout from "../../components/MainLayout";
 import Pagination from "../../components/Pagination";
 import { useSearchParams } from "react-router-dom";
 import Search from "../../components/Search";
-import './blogpage.css'
+import './blogpage.css';
+import newimage from "../../files/download.jpg"
 
 let isFirstRun = true;
 
@@ -67,14 +68,14 @@ const BlogPage = () => {
         />
           </div>
           <div className="blog-right">
-            <img src="https://source.unsplash.com/bowl-of-vegetable-salad-with-walnuts-MlPD-AzZYMg" alt=""/>
+            <img src={newimage} alt=""/>
           </div>
         </section>
       </div>
         
       { <section className="flex flex-col container mx-auto px-5 ">
         
-        <div className=" flex flex-wrap md:gap-x-5 gap-y-5 pb-10">
+        <div className=" flex flex-wrap md:gap-x-6 gap-y-5 pb-10">
           {isLoading || isFetching ? (
             [...Array(3)].map((item, index) => (
               <ArticleCardSkeleton
