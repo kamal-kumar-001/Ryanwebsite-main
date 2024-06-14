@@ -13,7 +13,7 @@ router.route("/")
   .post(authGuard, adminGuard, createProduct)
   .get(getAllProducts);
 
-router.route("/:slug")
+router.route("/:id")
   .put(authGuard, adminGuard, updateProduct)
   .delete(authGuard, adminGuard, deleteProduct)
   .get(getProduct);

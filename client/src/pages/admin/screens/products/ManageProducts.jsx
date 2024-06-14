@@ -125,7 +125,7 @@ const ManageProducts = () => {
               className="text-red-600 hover:text-red-900 disabled:opacity-70 disabled:cursor-not-allowed"
               onClick={() => {
                 deleteDataHandler({
-                  slug: product?.slug,
+                  slug: product?._id,
                   token: userState.userInfo.token,
                 });
               }}
@@ -133,7 +133,7 @@ const ManageProducts = () => {
               Delete
             </button>
             <Link
-              to={`/admin/products/manage/edit/${product?.slug}`}
+              to={`/admin/products/manage/edit/${product?._id}`}
               className="text-green-600 hover:text-green-900"
             >
               Edit

@@ -24,14 +24,14 @@ import { useSelector } from "react-redux";
 // };
 
 const EditProduct = () => {
-  const { slug } = useParams();
-  const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const { id } = useParams();
+  const queryClient = useQueryClient();
   const userState = useSelector((state) => state.user);
   const [initialPhoto, setInitialPhoto] = useState(null);
   const [photo, setPhoto] = useState(null);
   const [name, setName] = useState("");
-  const [productSlug, setProductSlug] = useState(slug); // Assuming you're setting this elsewhere
+  const [slug, setSlug] = useState(""); // Assuming you're setting this elsewhere
   const [price, setPrice] = useState(0); // Default price
   const [countInStock, setCountInStock] = useState(0); // Default countInStock
   const [rating, setRating] = useState(0); // Default rating
@@ -43,11 +43,12 @@ const EditProduct = () => {
   // const [numReviews, setNumReviews] = useState(0); // Default numReviews
 
   const { data, isLoading, isError } = useQuery({
-    queryFn: () => getProduct({ slug }),
-    queryKey: ["product", slug],
+    queryFn: () => getProduct({ id }),
+    queryKey: ["product", id],
     onSuccess: (data) => {
       setInitialPhoto(data?.photo);
       setName(data.name);
+      setSlug(data.slug);
       setPrice(data.price);
       setCountInStock(data.countInStock);
       setRating(data.rating);
@@ -60,17 +61,17 @@ const EditProduct = () => {
     mutate: mutateUpdateProductDetail,
     isLoading: isLoadingUpdateProductDetail,
   } = useMutation({
-    mutationFn: ({ updatedData, slug, token }) => {
+    mutationFn: ({ updatedData, id, token }) => {
       return updateProduct({
         updatedData,
-        slug,
+        id,
         token,
       });
     },
     onSuccess: (data) => {
-      queryClient.invalidateQueries(["product", slug]);
+      queryClient.invalidateQueries(["product", id]);
       toast.success("Product is updated");
-      navigate(`/admin/products/manage/edit/${data.slug}`, { replace: true });
+      navigate(`/admin/products/manage/edit/${data._id}`, { replace: true });
     },
     onError: (error) => {
       toast.error(error.message);
@@ -102,11 +103,11 @@ const EditProduct = () => {
     }
     updatedData.append(
       "document",
-      JSON.stringify({ name, slug: productSlug, user: userState.userInfo, image: photo, countInStock, price, rating, reviews })
+      JSON.stringify({ name, slug, user: userState.userInfo, image: photo, countInStock, price, rating, reviews })
     );
     mutateUpdateProductDetail({
       updatedData,
-      slug,
+      id,
       token: userState.userInfo.token,
     });
   };
@@ -185,14 +186,14 @@ const EditProduct = () => {
             </div>
             <div className="d-form-control w-full">
               <label className="d-label" htmlFor="slug">
-                <span className="d-label-text">slug</span>
+                <span className="d-label-text">Slug</span>
               </label>
               <input
                 id="slug"
-                value={productSlug}
+                value={slug}
                 className="d-input d-input-bordered border-slate-300 !outline-slate-300 text-xl font-medium font-roboto text-dark-hard"
                 onChange={(e) =>
-                  setProductSlug(e.target.value.replace(/\s+/g, "-").toLowerCase())
+                  setSlug(e.target.value.replace(/\s+/g, "-").toLowerCase())
                 }
                 placeholder="product slug"
               />

@@ -68,7 +68,7 @@ const Header = () => {
       onSuccess: (data) => {
         queryClient.invalidateQueries(["products"]);
         toast.success("Product is created, edit that now!");
-        navigate(`/admin/products/manage/edit/${data.slug}`);
+        navigate(`/admin/products/manage/edit/${data._id}`);
       },
       onError: (error) => {
         toast.error(error.message);

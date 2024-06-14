@@ -9,7 +9,7 @@ const ProductItem = (props) => {
   const product = props.product;
 
   const addToCartHandler = () => {
-    navigate(`/cart/${product.slug}?qty=1`);
+    navigate(`/cart/${product._id}?qty=1`);
   };
 
   return (
@@ -18,14 +18,14 @@ const ProductItem = (props) => {
       onMouseEnter={() => setIsShown(true)}
       onMouseLeave={() => setIsShown(false)}
     >
-      <Link className="h-fit" to={`/product/${product.slug}`}>
+      <Link className="h-fit" to={`/product/${product._id}`}>
         <img
           className="object-cover object-center w-full h-auto"
           src={product.image}
           alt={product.name}
         />
       </Link>
-      <Link className="h-fit" to={`/product/${product.slug}`}>
+      <Link className="h-fit" to={`/product/${product._id}`}>
         <h5 className="text-palette-graniteGray font-normal mt-2">
           {product.name}
         </h5>
@@ -50,7 +50,7 @@ ProductItem.propTypes = {
   product: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    image: PropTypes.string,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
   }).isRequired,

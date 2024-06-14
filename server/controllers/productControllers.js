@@ -25,7 +25,7 @@ const getAllProducts = asyncHandler(async (req, res) => {
 });
 
 const getProduct = asyncHandler(async (req, res) => {
-  const product = await Product.findOne({ slug: req.params.slug });
+  const product = await Product.findById(req.params.id);
   if (product) {
     res.json(product);
   } else {
@@ -35,7 +35,7 @@ const getProduct = asyncHandler(async (req, res) => {
 });
 
 const deleteProduct = asyncHandler(async (req, res) => {
-  const product = await Product.findOne({ slug: req.params.slug });
+  const product = await Product.findById(req.params.id);
   if (product) {
     await product.remove();
     res.json({ message: "Product removed" });
@@ -76,7 +76,7 @@ const createProduct = asyncHandler(async (req, res) => {
 
 const updateProduct = async (req, res, next) => {
   try {
-    const product = await Product.findOne({ slug: req.params.slug });
+    const product = await Product.findById(req.params.id);
 
     if (!product) {
       const error = new Error("Product was not found");
@@ -151,7 +151,7 @@ const updateProduct = async (req, res, next) => {
 const createProductReview = asyncHandler(async (req, res) => {
   const { rating, comment } = req.body;
 
-  const product = await Product.findOne({ slug: req.params.slug });
+  const product = await Product.findById(req.params.id);
 
   if (product) {
     const alreadyReviewed = product.reviews.find(

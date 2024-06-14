@@ -20,19 +20,27 @@ const CartScreen = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state?.cart);
   const { cartItems } = cart;
-  const { slug: productId } = useParams();
+  const { id: productId } = useParams();
   const [searchParams] = useSearchParams();
 
   const qty = searchParams.get("qty") ? Number(searchParams.get("qty")) : 1;
 
+  // console.log(productId);
   useEffect(() => {
     if (productId) {
       dispatch(addToCart(productId, qty));
     }
   }, [productId, qty, dispatch]);
 
+  const userState = useSelector((state) => state?.user);
+  const { userInfo } = userState;
+
   const checkoutHandler = () => {
-    navigate("/shipping");
+    if (userInfo) {
+      navigate("/shipping");
+    } else {
+      navigate("/login");
+    }
   };
 
   return (

@@ -49,7 +49,7 @@ const ProductDetail = ({ product }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 grid-flow-dense min-h-0">
           <ProductImages
             className="flex overflow-auto lg:flex-col lg:col-span-2 lg:overflow-y-auto"
-            productImageHeight={productImageHeight}
+            productimageheight={productImageHeight}
           >
             {[...Array(5)].map((item, index) => (
               <img

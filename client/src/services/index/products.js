@@ -13,9 +13,9 @@ export const getAllProducts = async (searchKeyword = "", page = 1, limit = 10) =
   }
 };
 
-export const getProduct = async ({ slug }) => {
+export const getProduct = async ({ id }) => {
   try {
-    const { data } = await axios.get(`/api/products/${slug}`);
+    const { data } = await axios.get(`/api/products/${id}`);
     return data;
   } catch (error) {
     if (error.response && error.response.data.message)
@@ -31,8 +31,8 @@ export const deleteProduct = async ({ slug, token }) => {
         Authorization: `Bearer ${token}`,
       },
     };
-
-    const { data } = await axios.delete(`/api/products/${slug}`, config);
+const id = slug
+    const { data } = await axios.delete(`/api/products/${id}`, config);
     return data;
   } catch (error) {
     if (error.response && error.response.data.message)
@@ -41,7 +41,7 @@ export const deleteProduct = async ({ slug, token }) => {
   }
 };
 
-export const updateProduct = async ({ updatedData, slug, token }) => {
+export const updateProduct = async ({ updatedData, id, token }) => {
   try {
     const config = {
       headers: {
@@ -49,7 +49,7 @@ export const updateProduct = async ({ updatedData, slug, token }) => {
       },
     };
 
-    const { data } = await axios.put(`/api/products/${slug}`, updatedData, config);
+    const { data } = await axios.put(`/api/products/${id}`, updatedData, config);
     return data;
   } catch (error) {
     if (error.response && error.response.data.message)

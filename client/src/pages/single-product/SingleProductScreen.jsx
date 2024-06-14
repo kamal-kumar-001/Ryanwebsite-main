@@ -9,7 +9,7 @@ import MainLayout from "../../components/MainLayout";
 import { getProduct } from "../../services/index/products";
 
 const SingleProductScreen = () => {
-  const { id: slug } = useParams();
+  const { id: id } = useParams();
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -23,7 +23,7 @@ const SingleProductScreen = () => {
       try {
         setLoading(true);
 
-        const productData = await getProduct({slug});
+        const productData = await getProduct({id});
         setProduct(productData);
         setLoading(false);
       } catch (error) {
@@ -33,7 +33,7 @@ const SingleProductScreen = () => {
     };
 
     fetchProduct();
-  }, [slug]);
+  }, [id]);
 
   return (
     <MainLayout>
