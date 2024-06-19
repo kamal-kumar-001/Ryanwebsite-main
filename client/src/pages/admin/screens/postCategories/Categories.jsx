@@ -10,7 +10,7 @@ import {
 import DataTable from "../../components/DataTable";
 import { useState } from "react";
 
-const Categories = () => {
+const PCategories = () => {
   const [categoryTitle, seTcategoryTitle] = useState("");
 
   const { mutate: mutateCreateCategory, isLoading: isLoadingCreateCategory } =
@@ -134,7 +134,7 @@ const Categories = () => {
                   Delete
                 </button>
                 <Link
-                  to={`/admin/categories/manage/edit/${category?._id}`}
+                  to={`/admin/post-categories/manage/edit/${category?._id}`}
                   className="text-green-600 hover:text-green-900"
                 >
                   Edit
@@ -148,4 +148,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default PCategories;

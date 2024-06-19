@@ -11,7 +11,7 @@ import { toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import Editor from "../../../../components/editor/Editor";
 import MultiSelectTagDropdown from "../../components/select-dropdown/MultiSelectTagDropdown";
-import { getAllCategories } from "../../../../services/index/postCategories";
+import { getAllCategories } from "../../../../services/index/recommendCategories";
 import {
   categoryToOption,
   filterCategories,
@@ -248,7 +248,7 @@ const EditRecommend = () => {
                   onChange={(newValue) =>
                     setTags(newValue.map((item) => item.value))
                   }
-                  className="relative z-20"
+                  className="relative z-40"
                 />
               )}
             </div>

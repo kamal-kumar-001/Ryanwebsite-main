@@ -12,8 +12,10 @@ import Admin from "./pages/admin/screens/Admin";
 import Comments from "./pages/admin/screens/comments/Comments";
 import ManagePosts from "./pages/admin/screens/posts/ManagePosts";
 import EditPost from "./pages/admin/screens/posts/EditPost";
-import Categories from "./pages/admin/screens/categories/Categories";
-import EditCategories from "./pages/admin/screens/categories/EditCategories";
+import PCategories from "./pages/admin/screens/postCategories/Categories";
+import PEditCategories from "./pages/admin/screens/postCategories/EditCategories";
+import RCategories from "./pages/admin/screens/recommendCategories/Categories";
+import REditCategories from "./pages/admin/screens/recommendCategories/EditCategories";
 import Users from "./pages/admin/screens/users/Users";
 import BlogPage from "./pages/blog/BlogPage";
 import About from "./pages/about/About"
@@ -99,10 +101,15 @@ function App() {
           <Route path="orders/manage" element={<ManageOrders />} />
           <Route path="posts/manage/edit/:slug" element={<EditPost />} />
           <Route path="products/manage/edit/:slug" element={<EditProduct />} />
-          <Route path="categories/manage" element={<Categories />} />
+          <Route path="post-categories/manage" element={<PCategories />} />
+          <Route path="recommend-categories/manage" element={<RCategories />} />
           <Route
-            path="categories/manage/edit/:slug"
-            element={<EditCategories />}
+            path="post-categories/manage/edit/:slug"
+            element={<PEditCategories />}
+          />
+          <Route
+            path="recommend-categories/manage/edit/:slug"
+            element={<REditCategories />}
           />
           <Route path="users/manage" element={<Users />} />
           <Route path="members/manage" element={<Members />} />

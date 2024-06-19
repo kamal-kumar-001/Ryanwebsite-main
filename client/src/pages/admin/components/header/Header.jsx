@@ -185,7 +185,7 @@ const Header = () => {
                 >
                   Add New Post
                 </button>
-                <Link to="/admin/categories/manage">Categories</Link>
+                <Link to="/admin/post-categories/manage">Categories</Link>
               </NavItemCollapse>
               <NavItemCollapse
                 title="Podcasts"
@@ -213,7 +213,7 @@ const Header = () => {
                 activeNavName={activeNavName}
                 setActiveNavName={setActiveNavName}
               >
-                <Link to="/admin/recommends/manage">Manage all Recommends</Link>
+                <Link to="/admin/recommends/manage">Manage all Recommendations</Link>
                 <button
                   disabled={isLoadingCreateRecommend}
                   className="text-start disabled:opacity-60 disabled:cursor-not-allowed"
@@ -223,7 +223,7 @@ const Header = () => {
                 >
                   Add New Recommendation
                 </button>
-                {/* <Link to="/admin/categories/manage">Categories</Link> */}
+                <Link to="/admin/recommend-categories/manage">Categories</Link>
               </NavItemCollapse>
 
               <NavItem

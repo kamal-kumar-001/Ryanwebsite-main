@@ -8,7 +8,7 @@ import {
   updateCategory,
 } from "../../../../services/index/postCategories";
 
-const EditCategories = () => {
+const PEditCategories = () => {
   const queryClient = useQueryClient();
   const [categoryTitle, setCategoryTitle] = useState("");
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ const EditCategories = () => {
       onSuccess: (data) => {
         queryClient.invalidateQueries(["categories", slug]);
         toast.success("Category is updated");
-        navigate(`/admin/categories/manage/edit/${data._id}`, {
+        navigate(`/admin/post-categories/manage/edit/${data._id}`, {
           replace: true,
         });
       },
@@ -78,4 +78,4 @@ const EditCategories = () => {
   );
 };
 
-export default EditCategories;
+export default PEditCategories;

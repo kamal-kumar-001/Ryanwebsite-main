@@ -74,11 +74,11 @@ const ManageRecommends = () => {
             <p className="text-gray-900 whitespace-no-wrap">
               {recommend.categories.length > 0
                 ? recommend.categories
-                    .slice(0, 3)
+                    .slice(0, 2)
                     .map(
                       (category, index) =>
                         `${category.title}${
-                          recommend.categories.slice(0, 3).length === index + 1
+                          recommend.categories.slice(0, 2).length === index + 1
                             ? <div key={index}></div>
                             : ", "
                         }`
