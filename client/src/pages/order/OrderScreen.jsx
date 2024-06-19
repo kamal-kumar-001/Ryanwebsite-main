@@ -20,7 +20,7 @@ const OrderScreen = () => {
   const [paymentLoading, setPaymentLoading] = useState(false);
 
   const orderDetails = useSelector((state) => state.orderDetails);
-  // console.log(orderDetails);
+  console.log(orderDetails);
   const { order, loading, error } = orderDetails;
 
   const orderPay = useSelector((state) => state.orderPay);
@@ -32,7 +32,7 @@ const OrderScreen = () => {
 
   const userLogin = useSelector((state) => state.user);
   const { userInfo } = userLogin;
-  // console.log(userInfo);
+  console.log(userInfo);
 
   useEffect(() => {
     if (!userInfo) {
@@ -118,17 +118,17 @@ const OrderScreen = () => {
               <div className="w-full pb-5 border-b border-gray-300">
                 <h2 className="text-xl font-semibold">Shipping</h2>
                 <p className="mt-2">
-                  <span className="font-semibold">Name:</span> {order?.user?.name}
+                  <span className="font-semibold">Name:</span> {order.user.name}
                 </p>
                 <p className="mt-2">
                   <span className="font-semibold">Email:</span>{" "}
-                  <a href={`mailto:${order?.user?.email}`}>{order?.user?.email}</a>
+                  <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
                 </p>
                 <p className="my-2">
                   <span className="font-semibold">Address:</span>{" "}
-                  {order.shippingAddress?.address}, {order.shippingAddress?.city}{" "}
-                  {order.shippingAddress?.postalCode},{" "}
-                  {order.shippingAddress?.country}
+                  {order.shippingAddress.address}, {order.shippingAddress.city}{" "}
+                  {order.shippingAddress.postalCode},{" "}
+                  {order.shippingAddress.country}
                 </p>
                 {order.isDelivered ? (
                   <Alert variant="success">
@@ -152,7 +152,7 @@ const OrderScreen = () => {
               </div>
               <div className="w-full py-5 border-b border-gray-300">
                 <h2 className="text-xl font-semibold">Order Items</h2>
-                {order.orderItems?.length === 0 ? (
+                {order.orderItems.length === 0 ? (
                   <Alert variant="error">Order is empty</Alert>
                 ) : (
                   <section className="container px-4 mx-auto">
@@ -162,7 +162,7 @@ const OrderScreen = () => {
                           <div className="overflow-hidden border border-gray-200  md:rounded-lg">
                             <table className="min-w-full divide-y divide-gray-200">
                               <tbody className="bg-white divide-y divide-gray-200">
-                                {order.orderItems?.map((item, index) => (
+                                {order.orderItems.map((item, index) => (
                                   <tr key={index}>
                                     <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                       <div className="inline-flex items-center gap-x-3">
@@ -227,11 +227,11 @@ const OrderScreen = () => {
                   </span>
                 </div>
               </div>
-              {!order.isPaid && order.user?._id === userInfo?._id && (
+              {!order.isPaid && order.user._id === userInfo._id && (
                 <button
                   type="button"
                   className="w-full text-white bg-black px-5 py-3 mt-4 disabled:opacity-70"
-                  disabled={order.orderItems?.length === 0 || paymentLoading}
+                  disabled={order.orderItems.length === 0 || paymentLoading}
                   onClick={payOrderHandler}
                 >
                   Pay

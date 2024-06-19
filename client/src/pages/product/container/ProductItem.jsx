@@ -28,6 +28,7 @@ const ProductItem = (props) => {
       <Link className="h-fit" to={`/product/${product._id}`}>
         <h5 className="text-palette-graniteGray font-normal mt-2">
           {product.name}
+
         </h5>
       </Link>
       {isShown && (

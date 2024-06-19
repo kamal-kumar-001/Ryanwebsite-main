@@ -39,37 +39,49 @@ import ManagePodcasts from "./pages/admin/screens/podcasts/ManagePodcast";
 import EditPodcast from "./pages/admin/screens/podcasts/EditPodcast";
 import PodcastDetailPage from "./pages/podcastDetail/PodcastDetailPage";
 import MyOrders from "./pages/myorders/MyOrders";
-
-
-
-
+import ShopInitial from "./pages/shopinitial/ShopInitial";
+import RyanProducts from "./pages/ryanproducts/RyanProducts";
+import RyanProductDesc from "./pages/ryanproductdesc/RyanProductDesc";
+import RyanProductDescCollagen from "./pages/ryanproductdesc/ryanproductcollagen";
+import RyanChampionoBook from "./pages/ryanproductdesc/championbook/ryanchampionbook";
+import RyanDiary from "./pages/ryanproductdesc/ryandiary/ryandiary";
+import ManageRecommends from "./pages/admin/screens/recommends/ManageRecommends";
+import EditRecommend from "./pages/admin/screens/recommends/EditRecommend";
+import RecommendsPage from "./pages/recommends/recommendPage";
+import RecommendDetailPage from "./pages/recommendDetial/RecommendDetail";
 
 function App() {
   return (
     <div className="App font-opensans">
       <Routes>
-        
         <Route index path="/" element={<HomePage />} />
         <Route path="/blog" element={<BlogPage/>}/>
+        <Route path="/blog/:slug" element={<ArticleDetailPage />} />
         <Route path="/podcast" element={<Podcastpage/>}/>
+        <Route path="/podcast/:slug" element={<PodcastDetailPage />} />
+        <Route path='/ryanproductdesc' element={<RyanProductDesc/>}/>
+        <Route path="/ryanproductdesccollagen" element={<RyanProductDescCollagen/>}/>
+        <Route path="/ryanproductdesc/ryanchampionbook" element={<RyanChampionoBook/>}/>
+        <Route path="ryanproductdesc/ryandiary" element={<RyanDiary/>}/>
+        <Route path="/ryan-recommends" element={<RecommendsPage/>}/>
+        <Route path="/ryan-recommends/:slug" element={<RecommendDetailPage />} />
         <Route path="/service/kids" element={<Service/>}/>
         <Route path="/service/fitness" element={<Fitness/>}/>
         <Route path="/service/medical" element={<Medical/>}/>
         <Route path="/service/sports" element={<Sports/>}/>
         <Route path="/service/international" element={<International/>}/>
         <Route path="/eatwell" element={<Eatwell/>}/>
-        <Route path="/blog" element={<BlogPage />} />
-        <Route path="/blog/:slug" element={<ArticleDetailPage />} />
-        <Route path="/podcast/:slug" element={<PodcastDetailPage />} />
+        <Route path="/shopinitial" element={<ShopInitial/>}/>
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/myorders" element={<MyOrders />} />
         <Route path="/shop/" element={<ProductScreen />} />
+        <Route path='/ryanproduct' element={<RyanProducts/>}/>
         <Route path="/product/:id" element={<SingleProductScreen />} />
         <Route path="/cart">
-          <Route index element={<CartScreen />} />
-          <Route path=":id" element={<CartScreen />} />
+        <Route index element={<CartScreen />} />
+        <Route path=":id" element={<CartScreen />} />
         </Route>
         <Route path="/shipping" element={<ShippingScreen />} />
         <Route path="/payment" element={<PaymentScreen />} />
@@ -80,11 +92,13 @@ function App() {
           <Route path="comments" element={<Comments />} />
           <Route path="posts/manage" element={<ManagePosts />} />
           <Route path="podcasts/manage" element={<ManagePodcasts />} />
-          <Route path="podcasts/manage/edit/:slug" element={<EditPodcast />} />
+          <Route path="podcasts/manage/edit/:id" element={<EditPodcast />} />
+          <Route path="recommends/manage" element={<ManageRecommends />} />
+          <Route path="recommends/manage/edit/:slug" element={<EditRecommend />} />
           <Route path="products/manage" element={<ManageProducts />} />
           <Route path="orders/manage" element={<ManageOrders />} />
           <Route path="posts/manage/edit/:slug" element={<EditPost />} />
-          <Route path="products/manage/edit/:id" element={<EditProduct />} />
+          <Route path="products/manage/edit/:slug" element={<EditProduct />} />
           <Route path="categories/manage" element={<Categories />} />
           <Route
             path="categories/manage/edit/:slug"

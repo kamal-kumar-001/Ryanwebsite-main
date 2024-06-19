@@ -1,0 +1,93 @@
+.ryan-prdct-layout {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    flex-direction: column;
+    background-image: url('../../files/image1bg.jpg');
+    background-size: cover;
+    color: white;
+}
+
+.ryan-prdct-layout span {
+    width: 40%;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.ryan-prdct-container-layout {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.ryan-prdct-container {
+    width: 40%;
+    height: 300px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    padding: 10px;
+    position: relative;
+    cursor: pointer; /* Indicate that the whole container is clickable */
+}
+
+.ryan-prdct-container img {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.ryan-prdct-container:hover img {
+    transform: scale(1.05);
+}
+
+.ryan-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.ryan-prdct-container:hover .ryan-overlay {
+    opacity: 1;
+}
+
+.ryan-overlay p {
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+@media (max-width: 650px) {
+    .ryan-prdct-container {
+        width: 80%;
+    }
+}
+
+@media (max-width:350px){
+    .ryan-prdct-layout {
+        font-size: 25px;
+    }
+    .ryan-prdct-layout span {
+        width: 60%;
+        font-weight: normal;
+        font-size: 20px;
+    }
+    
+
+}

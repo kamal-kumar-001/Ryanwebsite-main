@@ -12,7 +12,6 @@ const PodcastCard = ({ post, className }) => {
           <img
             src={post.photo ? stables.UPLOAD_FOLDER_BASE_URL + post.photo : images.samplePostImage}
             alt="title"
-            className="podcast-image"
           />
         </div>
       </Link>

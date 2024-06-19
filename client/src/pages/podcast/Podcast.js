@@ -47,7 +47,7 @@ const PodcastPage = () => {
   return (
     <MainLayout>
       <div className="pd-main-layout">
-        <section className="container mx-auto mt-5 flex flex-col px-5">
+        <section className="pd-flex-order2 container mx-auto mt-5 flex flex-col px-5 pd-order-search">
           <h2
             style={{
               fontSize: "30px",
@@ -61,10 +61,7 @@ const PodcastPage = () => {
           <div className="flex flex-wrap gap-y-5 pb-10 md:gap-x-5">
             {isLoading || isFetching ? (
               [...Array(3)].map((item, index) => (
-                <PodcastDetailSkeleton
-                  key={index}
-                  className="w-full md:w-[calc(70%-20px)] lg:w-[calc(33.33%-21px)]"
-                />
+                <PodcastDetailSkeleton key={index} className="pd-card" />
               ))
             ) : isError ? (
               <ErrorMessage message="Couldn't fetch the posts data" />
@@ -75,11 +72,12 @@ const PodcastPage = () => {
                 <PodcastCard
                   key={podcast._id}
                   post={podcast}
-                  className="w-full md:w-[calc(50%-20px)] lg:w-[calc(33.33%-21px)]"
+                  className="pd-card"
                 />
               ))
             )}
           </div>
+
           {!isLoading && (
             <Pagination
               onPageChange={(page) => handlePageChange(page)}
@@ -89,7 +87,11 @@ const PodcastPage = () => {
           )}
         </section>
         <div className="pd-search-container">
-          <input type="text" placeholder="Search..." className="pd-search-input" />
+          <input
+            type="text"
+            placeholder="Search..."
+            className="pd-search-input"
+          />
           <button className="pd-search-button">Search</button>
         </div>
       </div>
