@@ -95,9 +95,9 @@
 
 
 .diary-product-image img{
-    border: 2px solid red;
-    width: 40%;
-    height: 70%;
+    /* border: 2px solid red; */
+    width: 35%;
+    /* height: 40%; */
     }
 
 
@@ -260,14 +260,22 @@
     }
 
     .diary-product-image img{
-        width: 70%;
-        height: 70%;
+        width: 50% !important;
+
         }
 
         
     .diary-product-content{
         padding-left: 5%;
     }
+}
+
+@media (max-width:1347px){
+    .diary-product-image img{
+        width: 50%;
+        /* border: 2px solid blue; */
+        }
+
 }
 
 @media (max-width:670px){
@@ -393,6 +401,9 @@
     .diary-ryan-note-image{
         width: 300px;
         height: 300px;
+    }
+    .diary-product-title{
+        font-size: 30px;
     }
   }
 

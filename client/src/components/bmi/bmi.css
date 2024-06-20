@@ -1,0 +1,150 @@
+.bmi-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  width: 60%;
+  background-image: linear-gradient(45deg, #2c2c2c, #595958);
+  /* box-shadow: 1px 1px 1px 5px rgb(243, 208, 200,0.4); */
+}
+
+.bmi-header {
+  font-size: 28px;
+  font-weight: bold;
+  color: #f1782a;
+  margin-bottom: 20px;
+}
+
+.bmi-form {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  width: 90%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.bmi-inputRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.bmi-label {
+  flex: 1;
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+input[type="number"] {
+  flex: 2;
+  height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding-left: 10px;
+  font-size: 16px;
+  outline: none;
+}
+
+.bmi-genderRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.bmi-genderButton {
+  flex: 1;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f1782a;
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+  border: none;
+}
+
+.bmi-selectedGender {
+  background-color: #e74e07;
+  color: #fff;
+}
+
+.bmi-submitButton {
+  background-color: #262625;
+  border-radius: 10px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+  color: white;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.bmi-submitButtonText {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.bmi-resultContainer {
+  margin-top: 20px;
+}
+
+.bmi-resultLabel {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.bmi-resultText {
+  font-size: 16px;
+}
+
+.bmi-healthy {
+  color: green;
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.bmi-unhealthy {
+  color: red;
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.bmi-both-button{
+  display: flex;
+  /* border: 1px solid rebeccapurple; */
+  width: 1005;
+  justify-content: space-around;
+}
+.bmi-reset-button{
+  background-color: #262625;
+  border-radius: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+  color: white;
+  margin-top: 10px;
+  padding: 10px;
+
+}
+
+/* Optional: Responsive adjustments */
+@media (max-width: 600px) {
+  .bmi-form {
+      width: 100%;
+  }
+}

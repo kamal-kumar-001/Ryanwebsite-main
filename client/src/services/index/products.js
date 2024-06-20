@@ -31,7 +31,7 @@ export const deleteProduct = async ({ slug, token }) => {
         Authorization: `Bearer ${token}`,
       },
     };
-const id = slug
+    const id = slug
     const { data } = await axios.delete(`/api/products/${id}`, config);
     return data;
   } catch (error) {

@@ -41,6 +41,7 @@ const Navbar = () => {
           <ul className="only-to-hover">
             <li style={{fontSize:"20px"}}><Link to={'/'}>Home</Link></li>
             <li style={{fontSize:"20px"}}><Link to={'/shopinitial'}>Shop</Link></li>
+            {/* <li style={{fontSize:"20px"}}><Link to={'/shopinitial'}>Get Ryan</Link></li> */}
             <li style={{fontSize:"20px"}}
               className="dropdown"
               onMouseEnter={handleDropdownMouseEnter}

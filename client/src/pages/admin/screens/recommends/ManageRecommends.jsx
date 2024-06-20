@@ -79,7 +79,7 @@ const ManageRecommends = () => {
                       (category, index) =>
                         `${category.title}${
                           recommend.categories.slice(0, 2).length === index + 1
-                            ? <div key={index}></div>
+                            ? ''
                             : ", "
                         }`
                     )

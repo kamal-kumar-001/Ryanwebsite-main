@@ -1,27 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-// import CreatableSelect from "react-select/creatable";
 import { getProduct, updateProduct } from "../../../../services/index/products";
 import { useParams, useNavigate } from "react-router-dom";
-// import { Link, useParams, useNavigate } from "react-router-dom";
 import ArticleDetailSkeleton from "../../../articleDetail/components/ArticleDetailSkeleton";
 import ErrorMessage from "../../../../components/ErrorMessage";
 import { stables } from "../../../../constants";
 import { HiOutlineCamera } from "react-icons/hi";
 import { toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
-// import Editor from "../../../../components/editor/Editor";
-// import MultiSelectTagDropdown from "../../components/select-dropdown/MultiSelectTagDropdown";
-// import { getAllCategories } from "../../../../services/index/postCategories";
-// import {
-//   categoryToOption,
-//   filterCategories,
-// } from "../../../../utils/multiSelectTagUtils";
-
-// const promiseOptions = async (inputValue) => {
-//   const { data: categoriesData } = await getAllCategories();
-//   return filterCategories(inputValue, categoriesData);
-// };
 
 const EditProduct = () => {
   const navigate = useNavigate();
@@ -41,6 +27,8 @@ const EditProduct = () => {
   // const [categories, setCategories] = useState("");
   // const [description, setDescription] = useState("");
   // const [numReviews, setNumReviews] = useState(0); // Default numReviews
+
+  console.log(id);
 
   const { data, isLoading, isError } = useQuery({
     queryFn: () => getProduct({ id }),

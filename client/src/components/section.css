@@ -4,17 +4,50 @@
   font-family: "Jost", sans-serif;
 }
 .section {
-  background-image: url("images/back.jpg");
-  background-size: cover;
-  background-position: center;
+
   width: 100%;
+  overflow: hidden;
 }
+
+.player-wrapper {
+  position: relative;
+  padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+}
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.player-button {
+  position: absolute; /* Position the button absolutely */
+  bottom: 0; /* Center the button vertically */
+  right: 5%; /* Center the button horizontally */
+  transform: translate(-50%, -50%); /* Adjust positioning using translate */
+  font-size: 40px;
+
+}
+.player-button1{
+  position: absolute; /* Position the button absolutely */
+  bottom: 0; /* Center the button vertically */
+  right: 8%; /* Center the button horizontally */
+  transform: translate(-50%, -50%); /* Adjust positioning using translate */
+  font-size: 40px;
+
+}
+
 
 .content {
   padding-top: 100px;
   width: 100%;
   display: flex;
   flex-direction: column;
+  color: black;
+}
+
+.section-button-play{
+  z-index: 1;
 }
 
 .para-image {
@@ -30,12 +63,14 @@
 .span1 {
   font-weight: bold;
   font-size: 40px;
-  color: rgb(255, 255, 255, 0.9);
+  /* color: rgb(255, 255, 255, 0.9); */
+  color: black;
 }
 .span2 {
   font-weight: bold;
   font-size: 110px;
-  color: rgb(255, 255, 255, 0.9);
+  /* color: rgb(255, 255, 255, 0.9); */
+  color: black;
 }
 .span3 {
   font-weight: bold;
@@ -43,7 +78,7 @@
   color: rgb(255, 255, 255, 0.9);
 }
 
-.achv {
+/* .achv {
   color: white;
   background-color: rgb(47, 47, 50, 0.6);
   margin: auto;
@@ -54,7 +89,8 @@
   border-radius: 20px;
   margin-top: 10px;
   width: 100%;
-}
+  border: 2px solid green;
+} */
 
 .achv-inside {
   display: flex;
@@ -104,7 +140,6 @@
   white-space: nowrap;
   position: relative;
   display: flex;
-
 }
 
 .logos:before,

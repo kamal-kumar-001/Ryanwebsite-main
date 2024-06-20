@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
+import { images, stables } from "../../../constants";
 
 const RecommendItem = (props) => {
 
   const recommend = props.recommend;
-  // console.log(recommend);
+  console.log(recommend.categories);
 
   return (
     <li
@@ -13,7 +14,7 @@ const RecommendItem = (props) => {
       <Link className="h-fit" to={`/ryan-recommends/${recommend.slug}`}>
         <img
           className="object-cover object-center w-full h-auto"
-          src={recommend.image}
+          src={recommend.photo ? stables.UPLOAD_FOLDER_BASE_URL + recommend.photo : images.samplePostImage}
           alt={recommend.title}
         />
       </Link>
@@ -22,16 +23,25 @@ const RecommendItem = (props) => {
           {recommend.title}
         </h5>
       </Link>
-        <span className="py-2 px-4 w-full h-full text-palette-chineseBlack font-medium">
-          {/* ${recommend.price} */}
-        </span>
+      <p className="text-gray-900 whitespace-no-wrap">
+        {recommend.categories.length > 0
+          ? recommend.categories.slice(0, 3).map((category, index) => (
+            <span key={index}>
+              {category.title}
+              {recommend.categories.slice(0, 3).length === index + 1 ? '' : ', '}
+            </span>
+          ))
+          : "Uncategorized"}
+      </p>
+
     </li>
   );
 };
 RecommendItem.propTypes = {
   recommend: PropTypes.shape({
     slug: PropTypes.string.isRequired,
-    image: PropTypes.string,
+    photo: PropTypes.string,
+    categories: PropTypes.array,
     title: PropTypes.string.isRequired,
   }).isRequired,
 };

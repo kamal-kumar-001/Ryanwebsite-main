@@ -100,7 +100,7 @@ function App() {
           <Route path="products/manage" element={<ManageProducts />} />
           <Route path="orders/manage" element={<ManageOrders />} />
           <Route path="posts/manage/edit/:slug" element={<EditPost />} />
-          <Route path="products/manage/edit/:slug" element={<EditProduct />} />
+          <Route path="products/manage/edit/:id" element={<EditProduct />} />
           <Route path="post-categories/manage" element={<PCategories />} />
           <Route path="recommend-categories/manage" element={<RCategories />} />
           <Route

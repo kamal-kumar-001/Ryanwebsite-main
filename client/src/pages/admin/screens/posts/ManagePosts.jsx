@@ -79,7 +79,7 @@ const ManagePosts = () => {
                       (category, index) =>
                         `${category.title}${
                           post.categories.slice(0, 3).length === index + 1
-                            ? <div key={index}></div>
+                            ? ''
                             : ", "
                         }`
                     )

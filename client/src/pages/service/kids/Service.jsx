@@ -13,6 +13,7 @@ import medicalimage from '../../../components/images/medical.jpg'
 import fitnessimage from '../../../components/images/fitness.jpg'
 import lineimage from "../../../components/images/line.png"
 
+
 function Service() {
 
   const navigate = useNavigate();
