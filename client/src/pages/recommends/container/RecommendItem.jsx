@@ -5,7 +5,6 @@ import { images, stables } from "../../../constants";
 const RecommendItem = (props) => {
 
   const recommend = props.recommend;
-  console.log(recommend.categories);
 
   return (
     <li
