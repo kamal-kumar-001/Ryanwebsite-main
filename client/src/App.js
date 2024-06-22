@@ -94,7 +94,7 @@ function App() {
           <Route path="comments" element={<Comments />} />
           <Route path="posts/manage" element={<ManagePosts />} />
           <Route path="podcasts/manage" element={<ManagePodcasts />} />
-          <Route path="podcasts/manage/edit/:id" element={<EditPodcast />} />
+          <Route path="podcasts/manage/edit/:slug" element={<EditPodcast />} />
           <Route path="recommends/manage" element={<ManageRecommends />} />
           <Route path="recommends/manage/edit/:slug" element={<EditRecommend />} />
           <Route path="products/manage" element={<ManageProducts />} />

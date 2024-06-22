@@ -30,7 +30,7 @@ const Editor = ({ onDataChange, content, editable }) => {
 
 Editor.propTypes = {
   onDataChange: PropTypes.func.isRequired,
-  content: PropTypes.string.isRequired,
+  content: PropTypes.object.isRequired,
   editable: PropTypes.bool.isRequired,
 };
 
