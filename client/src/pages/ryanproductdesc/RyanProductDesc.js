@@ -3,8 +3,16 @@ import "./ryanproductdesc.css";
 import ryanbook from "../../files/w3.jpg";
 import ryanbook1 from '../../files/w3.jpg'; 
 import ryanbook2 from '../../files/w3.jpg'; 
+import { useNavigate } from "react-router-dom";
 
 function RyanProductDesc() {
+  const navigate = useNavigate();
+  const addToCartHandler = () => {
+    navigate(`/cart/664bb786bb616406cb3ccd52?qty=1`);
+    // navigate(`/cart/${product._id}?qty=1`);
+  };
+
+
   return (
     <MainLayout>
       <section className="prouduct-top-layout">
@@ -15,7 +23,7 @@ function RyanProductDesc() {
           <h1 className="product-title">WHEATLESS</h1>
           <h3 className="product-end-title">A Guide to Gluten free life</h3>
           <span className="product-sold">4500+ copies sold and counting</span>
-          <div className="buy-btn">Buy Now</div>
+          <button onClick={addToCartHandler} className="buy-btn">Buy Now</button>
           <div>Price Shown</div>
         </div>
         <div className="product-image">

@@ -39,7 +39,7 @@ const CartScreen = () => {
     if (userInfo) {
       navigate("/shipping");
     } else {
-      navigate("/login");
+      navigate("/login?redirect=shipping");
     }
   };
 
